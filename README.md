@@ -1,5 +1,4 @@
-# LizeUI
-Addons para World of Warcraft - Añadido para Elvui - LizeUI
+# Addons para World of Warcraft - Añadido para Elvui - LizeUI
 -----
 
 ### ENGLISH
