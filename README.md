@@ -1,4 +1,4 @@
-# Addons para World of Warcraft - Añadido para Elvui - LizeUI
+# LizeUI - Compolemneto para Elvui
 
 ### ENGLISH
 Addon that is responsible for importing fonts and images into the ElvUI and Plater Nameplates ecosystem so that each user who wants to use the LizeUI profile import does not have to be done by hand.
