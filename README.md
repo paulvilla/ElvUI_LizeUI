@@ -5,7 +5,7 @@ Addon that is responsible for importing fonts and images into the ElvUI and Plat
 
 This import of the ElvUI + BenikUI profile can be found at:
 ```
-https://wago.io/sdi97dAiy
+https://wago.io/HTD3YlHPt
 ```
 I hope you like it and enjoy it as I do
 
@@ -16,6 +16,6 @@ Complemento que se encarga de importar fuentes e imágenes al ecosistema ElvUI y
 
 Esta importación del perfil ElvUI + BenikUI se puede encontrar en:
 ```
-https://wago.io/sdi97dAiy
+https://wago.io/HTD3YlHPt
 ```
 Espero que os guste y lo disfrutéis como yo
