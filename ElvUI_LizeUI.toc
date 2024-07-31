@@ -1,14 +1,17 @@
 ## Interface: 100200
 ## Author: Lizerius
-## Version: 0.5.2
+## Version: 0.6.0
 ## Title: |cff1784d1ElvUI|r |cff00c0faLizeUI|r
 ## Notes: Componentes para LizeUI (En desarrollo pero funcional)
 ## RequiredDeps: ElvUI
 ## DefaultState: Enabled
 ## X-Curse-Project-ID: 670382
 ## X-Tukui-ProjectFolders: ElvUI_LizeUI
+
+## OptionalDeps: LibSharedMedia-3.0
 ## SavedVariables: RCM_SavedVariables
 
+embeds.xml
 media\load_media.xml
 functions\SuppressRightClick.lua
 functions\GlobalFadePersist.lua
