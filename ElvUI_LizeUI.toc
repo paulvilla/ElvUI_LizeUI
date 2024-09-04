@@ -1,11 +1,12 @@
 ## Interface: 100200
 ## Author: Lizerius
-## Version: 0.6.0
+## Version: 0.5.3
 ## Title: |cff1784d1ElvUI|r |cff00c0faLizeUI|r
 ## Notes: Componentes para LizeUI (En desarrollo pero funcional)
 ## RequiredDeps: ElvUI
 ## DefaultState: Enabled
 ## X-Curse-Project-ID: 670382
+## X-Wago-ID: 96E782Gg
 ## X-Tukui-ProjectFolders: ElvUI_LizeUI
 
 ## OptionalDeps: LibSharedMedia-3.0
