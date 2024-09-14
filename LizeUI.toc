@@ -1,6 +1,6 @@
 ## Interface: 100200
 ## Author: Lizerius
-## Version: 0.5.3
+## Version: 0.5.4
 ## Title: |cff1784d1ElvUI|r |cff00c0faLizeUI|r
 ## Notes: Componentes para LizeUI (En desarrollo pero funcional)
 ## RequiredDeps: ElvUI
