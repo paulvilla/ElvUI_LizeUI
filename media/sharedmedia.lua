@@ -2,6 +2,7 @@ local LSM = LibStub('LibSharedMedia-3.0')
 
 if LSM == nil then return end
 
+LSM:Register('font','LizeUI Regular', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Regular.ttf]])
 LSM:Register('font','LizeUI Medium', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Medium.ttf]])
 LSM:Register('font','LizeUI Bold', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Bold.ttf]])
 LSM:Register('font','LizeUI Demi', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Demi.ttf]])
@@ -19,6 +20,7 @@ LSM:Register('font','JetBrainsMono Medium', [[Interface\AddOns\LizeUI\media\font
 LSM:Register('font','JetBrainsMono Regular', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-Regular.ttf]])
 LSM:Register('font','JetBrains SemiBold', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-SemiBold.ttf]])
 LSM:Register('font','JetBrainsMono-Bold', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-Bold.ttf]])
+LSM:Register('font','Montserrat', [[Interface\AddOns\LizeUI\media\fonts\Montserrat.ttf]])
 
 LSM:Register('statusbar','AsphyxiaNorm', [[Interface\AddOns\LizeUI\media\textures\statusbar\AsphyxiaNorm.tga]])
 LSM:Register('statusbar','BuiOnePixel', [[Interface\AddOns\LizeUI\media\textures\statusbar\BuiOnePixel.tga]])
