@@ -9,6 +9,7 @@ LSM:Register('font','LizeUI Medium', [[Interface\AddOns\LizeUI\media\fonts\Avant
 LSM:Register('font','LizeUI Bold', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Bold.ttf]])
 LSM:Register('font','LizeUI Demi', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Demi.ttf]])
 LSM:Register('font','LizeUI Numbers', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Numbers.ttf]],							ruRU + western)
+LSM:Register('font','Naowh', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Numbers.ttf]])
 LSM:Register('font','Bui Prototype', [[Interface\AddOns\LizeUI\media\fonts\PROTOTYPE.TTF]])
 LSM:Register('font','Bui PrototypeRU', [[Interface\AddOns\LizeUI\media\fonts\PROTOTYPE_RU.TTF]])
 LSM:Register('font','Bui Visitor1', [[Interface\AddOns\LizeUI\media\fonts\visitor1.ttf]])
