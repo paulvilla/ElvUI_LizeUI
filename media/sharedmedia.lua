@@ -1,17 +1,19 @@
 local LSM = LibStub('LibSharedMedia-3.0')
+local koKR, ruRU, zhCN, zhTW, western = LSM.LOCALE_BIT_koKR, LSM.LOCALE_BIT_ruRU, LSM.LOCALE_BIT_zhCN, LSM.LOCALE_BIT_zhTW, LSM.LOCALE_BIT_western
 
 if LSM == nil then return end
 
+LSM:Register('font','GothamNarrowUltra', [[Interface\Addons\NaowhUI\Core\Media\Fonts\GothamNarrowUltra.ttf]],				ruRU + western)
 LSM:Register('font','LizeUI Regular', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Regular.ttf]])
 LSM:Register('font','LizeUI Medium', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Medium.ttf]])
 LSM:Register('font','LizeUI Bold', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Bold.ttf]])
 LSM:Register('font','LizeUI Demi', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Demi.ttf]])
-LSM:Register('font','LizeUI Numbers', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Numbers.ttf]])
+LSM:Register('font','LizeUI Numbers', [[Interface\AddOns\LizeUI\media\fonts\AvantGardeLT-Numbers.ttf]],							ruRU + western)
 LSM:Register('font','Bui Prototype', [[Interface\AddOns\LizeUI\media\fonts\PROTOTYPE.TTF]])
-LSM:Register('font','Bui PrototypeRU', [[Interface\AddOns\LizeUI\media\fonts\PROTOTYPE_RU.TTF]], LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
-LSM:Register('font','Bui Visitor1', [[Interface\AddOns\LizeUI\media\fonts\visitor1.ttf]], LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register('font','Bui PrototypeRU', [[Interface\AddOns\LizeUI\media\fonts\PROTOTYPE_RU.TTF]])
+LSM:Register('font','Bui Visitor1', [[Interface\AddOns\LizeUI\media\fonts\visitor1.ttf]])
 LSM:Register('font','Bui Visitor2', [[Interface\AddOns\LizeUI\media\fonts\visitor2.ttf]])
-LSM:Register('font','Bui Tukui', [[Interface\AddOns\LizeUI\media\fonts\uf_font.ttf]], LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register('font','Bui Tukui', [[Interface\AddOns\LizeUI\media\fonts\uf_font.ttf]])
 LSM:Register('font','Bui Kait', [[Interface\AddOns\LizeUI\media\fonts\heavy_dock_kait.ttf]])
 LSM:Register('font','Bui ArialN', [[Interface\AddOns\LizeUI\media\fonts\ARIALN.ttf]])
 LSM:Register('font','Bui Homizio', [[Interface\AddOns\LizeUI\media\fonts\homizio_bold.ttf]])
@@ -20,7 +22,7 @@ LSM:Register('font','JetBrainsMono Medium', [[Interface\AddOns\LizeUI\media\font
 LSM:Register('font','JetBrainsMono Regular', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-Regular.ttf]])
 LSM:Register('font','JetBrains SemiBold', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-SemiBold.ttf]])
 LSM:Register('font','JetBrainsMono-Bold', [[Interface\AddOns\LizeUI\media\fonts\JetBrainsMono-Bold.ttf]])
-LSM:Register('font','Montserrat', [[Interface\AddOns\LizeUI\media\fonts\Montserrat.ttf]])
+LSM:Register('font','Montserrat', [[Interface\AddOns\LizeUI\media\fonts\Montserrat.ttf]],							ruRU + western)
 
 LSM:Register('statusbar','AsphyxiaNorm', [[Interface\AddOns\LizeUI\media\textures\statusbar\AsphyxiaNorm.tga]])
 LSM:Register('statusbar','BuiOnePixel', [[Interface\AddOns\LizeUI\media\textures\statusbar\BuiOnePixel.tga]])
