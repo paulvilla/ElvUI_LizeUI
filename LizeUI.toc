@@ -14,5 +14,5 @@
 
 embeds.xml
 media\load_media.xml
-functions\SuppressRightClick.lua
+#functions\SuppressRightClick.lua
 functions\GlobalFadePersist.lua
