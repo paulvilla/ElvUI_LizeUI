@@ -23,6 +23,9 @@ L.OPT_DEPS_RECOMMENDED_STATUS_TITLE = 'Estado de addons recomendados'
 L.OPT_QOL_HEADER = 'Funciones de mejora de vida'
 L.OPT_IMPORTS_MAIN_HEADER = 'Importaciones para instalar LizeUI'
 
+L.OPT_QOL_BOX_TITLE = 'Mejora de vida QoL'
+L.OPT_BUGFIX_BOX_TITLE = 'Arreglo de bugs'
+
 L.OPT_SUPPRESS_RIGHTCLICK_NAME = 'Suprimir click derecho (doble click)'
 L.OPT_SUPPRESS_RIGHTCLICK_DESC = 'Evita que un click derecho “suelto” corte el mouselook en combate (requiere recarga para efecto completo).'
 
@@ -31,6 +34,9 @@ L.OPT_GLOBAL_FADE_DESC = 'Mantiene el fade global de barras de acción consisten
 
 L.OPT_HIDE_PET_DEMON_NAME = 'Ocultar marco de mascota/demonio'
 L.OPT_HIDE_PET_DEMON_DESC = 'Oculta el marco de la mascota (demonio) si aparece.'
+
+L.OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_NAME = 'Ocultar barras de vida NPC amistoso persistente'
+L.OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_DESC = 'Al entrar al juego o hacer /reload, desactiva la opción de Blizzard que muestra las barras/placas de NPC amistosos.'
 
 
 L.OPT_ELVUI_IMPORTS_TITLE = 'Importación LizeUI para ElvUI'
@@ -192,5 +198,8 @@ L.CMD_LANG_FORCED_EN = 'LizeUI: Idioma forzado a inglés para testing.'
 L.CMD_LANG_FORCED_ES = 'LizeUI: Idioma forzado a español para testing.'
 L.CMD_LANG_RESET = 'LizeUI: Idioma reseteado a autodetectar.'
 L.CMD_UNKNOWN = 'LizeUI: Comando desconocido. Usa /lizeui help'
+
+L.CMD_INSTALL_RESET_CHAR = 'LizeUI: Instalador reseteado para este personaje.'
+L.CMD_INSTALL_RESET_ALL = 'LizeUI: Instalador reseteado para todos los personajes.'
 
 _G.LizeUI_Locales.esES = L

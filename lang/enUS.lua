@@ -23,6 +23,9 @@ L.OPT_DEPS_RECOMMENDED_STATUS_TITLE = 'Recommended addon status'
 L.OPT_QOL_HEADER = 'Quality of life features'
 L.OPT_IMPORTS_MAIN_HEADER = 'Imports to install LizeUI'
 
+L.OPT_QOL_BOX_TITLE = 'Quality of life (QoL)'
+L.OPT_BUGFIX_BOX_TITLE = 'Bug fixes'
+
 L.OPT_SUPPRESS_RIGHTCLICK_NAME = 'Suppress right-click (double click)'
 L.OPT_SUPPRESS_RIGHTCLICK_DESC = 'Prevents a “loose” right-click from breaking mouselook in combat (may require reload for full effect).'
 
@@ -31,6 +34,9 @@ L.OPT_GLOBAL_FADE_DESC = 'Keeps global actionbar fading consistent while in a ve
 
 L.OPT_HIDE_PET_DEMON_NAME = 'Hide pet/demon frame'
 L.OPT_HIDE_PET_DEMON_DESC = 'Hides the pet (demon) frame if it appears.'
+
+L.OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_NAME = 'Disable friendly NPC health bars (on load)'
+L.OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_DESC = 'On login/reload, disables the Blizzard option that shows friendly NPC nameplate health bars.'
 
 
 L.OPT_ELVUI_IMPORTS_TITLE = 'LizeUI imports for ElvUI'
@@ -191,5 +197,8 @@ L.CMD_LANG_FORCED_EN = 'LizeUI: Language forced to English for testing.'
 L.CMD_LANG_FORCED_ES = 'LizeUI: Language forced to Spanish for testing.'
 L.CMD_LANG_RESET = 'LizeUI: Language reset to auto-detect.'
 L.CMD_UNKNOWN = 'LizeUI: Unknown command. Use /lizeui help'
+
+L.CMD_INSTALL_RESET_CHAR = 'LizeUI: Installer state reset for this character.'
+L.CMD_INSTALL_RESET_ALL = 'LizeUI: Installer state reset for all characters.'
 
 _G.LizeUI_Locales.enUS = L

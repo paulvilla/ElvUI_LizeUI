@@ -338,8 +338,17 @@ local function BuildOptionsTable()
                         type = 'description',
                         name = LT('OPT_SPACER'),
                     },
+                },
+            },
+            qolBox = {
+                order = 11,
+                type = 'group',
+                name = BlueTitle(LT('OPT_QOL_BOX_TITLE')),
+                inline = true,
+                width = 0.5,
+                args = {
                     suppressRightClick = {
-                        order = 3,
+                        order = 1,
                         type = 'toggle',
                         name = LT('OPT_SUPPRESS_RIGHTCLICK_NAME'),
                         desc = LT('OPT_SUPPRESS_RIGHTCLICK_DESC'),
@@ -350,7 +359,7 @@ local function BuildOptionsTable()
                         end,
                     },
                     globalFadePersist = {
-                        order = 4,
+                        order = 2,
                         type = 'toggle',
                         name = LT('OPT_GLOBAL_FADE_NAME'),
                         desc = LT('OPT_GLOBAL_FADE_DESC'),
@@ -360,8 +369,17 @@ local function BuildOptionsTable()
                             LizeUI:ApplyFeature('globalFadePersist', value)
                         end,
                     },
+                },
+            },
+            bugfixBox = {
+                order = 12,
+                type = 'group',
+                name = BlueTitle(LT('OPT_BUGFIX_BOX_TITLE')),
+                inline = true,
+                width = 0.5,
+                args = {
                     hidePetDemonBar = {
-                        order = 5,
+                        order = 1,
                         type = 'toggle',
                         name = LT('OPT_HIDE_PET_DEMON_NAME'),
                         desc = LT('OPT_HIDE_PET_DEMON_DESC'),
@@ -369,6 +387,17 @@ local function BuildOptionsTable()
                         set = function(_, value)
                             LizeUIDB.features.hidePetDemonBar = value
                             LizeUI:ApplyFeature('hidePetDemonBar', value)
+                        end,
+                    },
+                    disableFriendlyNPCHealthBars = {
+                        order = 2,
+                        type = 'toggle',
+                        name = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_NAME'),
+                        desc = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_DESC'),
+                        get = function() return LizeUIDB.features.disableFriendlyNPCHealthBars end,
+                        set = function(_, value)
+                            LizeUIDB.features.disableFriendlyNPCHealthBars = value
+                            LizeUI:ApplyFeature('disableFriendlyNPCHealthBars', value)
                         end,
                     },
                 },

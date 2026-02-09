@@ -18,19 +18,19 @@ local function EnsureDefaults()
     if LizeUIDB.features.suppressRightClick == nil then LizeUIDB.features.suppressRightClick = true end
     if LizeUIDB.features.globalFadePersist == nil then LizeUIDB.features.globalFadePersist = true end
     if LizeUIDB.features.hidePetDemonBar == nil then LizeUIDB.features.hidePetDemonBar = true end
+    if LizeUIDB.features.disableFriendlyNPCHealthBars == nil then LizeUIDB.features.disableFriendlyNPCHealthBars = false end
 
     if LizeUIDB.requiredAddonsPromptAccepted == nil then
         LizeUIDB.requiredAddonsPromptAccepted = false
-    end
-
-    if LizeUIDB.welcomePromptAccepted == nil then
-        LizeUIDB.welcomePromptAccepted = false
     end
 end
 
 function LizeUI:SuppressElvUIInstallerOnFirstRun()
     if type(LizeUIDB) ~= 'table' then return end
-    if LizeUIDB.welcomePromptAccepted == true then return end
+
+    if type(self.IsInstallerCompletedForChar) == 'function' and self:IsInstallerCompletedForChar() then
+        return
+    end
 
     if type(E) ~= 'table' or type(E.private) ~= 'table' then return end
 
@@ -168,6 +168,9 @@ function LizeUI:ApplyFeature(key, enabled)
     elseif key == 'hidePetDemonBar' then
         local f = self.Features.HidePetDemonBar
         if f and f.SetEnabled then f:SetEnabled(enabled) end
+    elseif key == 'disableFriendlyNPCHealthBars' then
+        local f = self.Features.DisableFriendlyNPCHealthBars
+        if f and f.SetEnabled then f:SetEnabled(enabled) end
     end
 end
 
@@ -178,6 +181,7 @@ function LizeUI:EnableAll()
     self:ApplyFeature('suppressRightClick', LizeUIDB.features.suppressRightClick)
     self:ApplyFeature('globalFadePersist', LizeUIDB.features.globalFadePersist)
     self:ApplyFeature('hidePetDemonBar', LizeUIDB.features.hidePetDemonBar)
+    self:ApplyFeature('disableFriendlyNPCHealthBars', LizeUIDB.features.disableFriendlyNPCHealthBars)
 end
 
 function LizeUI:DisableAll()
@@ -186,6 +190,7 @@ function LizeUI:DisableAll()
     self:ApplyFeature('suppressRightClick', false)
     self:ApplyFeature('globalFadePersist', false)
     self:ApplyFeature('hidePetDemonBar', false)
+    self:ApplyFeature('disableFriendlyNPCHealthBars', false)
 end
 
 function LizeUI:OptionsAddonLoaded(_, addon)

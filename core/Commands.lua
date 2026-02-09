@@ -61,6 +61,22 @@ function LizeUI:HandleSlashCommand(msg)
         return
     end
 
+    if cmd == 'install_reset' then
+        if type(self.ResetInstallerForChar) == 'function' then
+            self:ResetInstallerForChar()
+        end
+        PrintMsg(LT('CMD_INSTALL_RESET_CHAR'))
+        return
+    end
+
+    if cmd == 'install_reset_all' then
+        if type(self.ResetInstallerForAllChars) == 'function' then
+            self:ResetInstallerForAllChars()
+        end
+        PrintMsg(LT('CMD_INSTALL_RESET_ALL'))
+        return
+    end
+
     PrintMsg(LT('CMD_UNKNOWN'))
 end
 

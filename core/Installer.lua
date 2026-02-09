@@ -204,14 +204,96 @@ local function EnsureInstallDefaults()
         _G.LizeUIDB = {}
     end
 
-    if _G.LizeUIDB.welcomePromptAccepted == nil then
-        _G.LizeUIDB.welcomePromptAccepted = false
-    end
-
     -- Debug del instalador (imprime una sola vez por sesión cuando está activado)
     if _G.LizeUIDB.debugInstaller == nil then
         _G.LizeUIDB.debugInstaller = false
     end
+end
+
+local function GetCurrentCharacterKey()
+    local name = (_G.UnitName and _G.UnitName('player')) or nil
+    local realm = (_G.GetRealmName and _G.GetRealmName()) or nil
+
+    if type(name) ~= 'string' or name == '' then return nil end
+    if type(realm) ~= 'string' or realm == '' then return name end
+
+    return realm .. '-' .. name
+end
+
+function LizeUI:IsInstallerCompletedForChar()
+    EnsureInstallDefaults()
+
+    local key = GetCurrentCharacterKey()
+    if not key then return false end
+
+    local t = _G.LizeUIDB and _G.LizeUIDB.installerCompleted
+    return type(t) == 'table' and t[key] == true
+end
+
+function LizeUI:MarkInstallerCompletedForChar()
+    EnsureInstallDefaults()
+
+    local key = GetCurrentCharacterKey()
+    if not key then return end
+
+    if type(_G.LizeUIDB.installerCompleted) ~= 'table' then
+        _G.LizeUIDB.installerCompleted = {}
+    end
+    _G.LizeUIDB.installerCompleted[key] = true
+end
+
+function LizeUI:ResetInstallerForChar()
+    EnsureInstallDefaults()
+
+    local key = GetCurrentCharacterKey()
+    if not key then return false end
+
+    local t = _G.LizeUIDB and _G.LizeUIDB.installerCompleted
+    if type(t) ~= 'table' then return false end
+
+    local had = t[key] == true
+    t[key] = nil
+
+    return had
+end
+
+function LizeUI:ResetInstallerForAllChars()
+    EnsureInstallDefaults()
+
+    local t = _G.LizeUIDB and _G.LizeUIDB.installerCompleted
+    if type(t) ~= 'table' then
+        _G.LizeUIDB.installerCompleted = {}
+        return 0
+    end
+
+    local count = 0
+    for _ in pairs(t) do
+        count = count + 1
+    end
+
+    _G.LizeUIDB.installerCompleted = {}
+    return count
+end
+
+local function HookInstallerCloseButton(owner, frame)
+    if not (owner and frame) then return end
+
+    if frame._lizeuiCloseHooked then return end
+    frame._lizeuiCloseHooked = true
+
+    local closeBtn = frame.CloseButton or frame.closeButton or frame.Close or frame.close or frame.ExitButton or frame.exitButton
+    if not closeBtn then return end
+
+    if type(closeBtn.GetScript) ~= 'function' or type(closeBtn.SetScript) ~= 'function' then return end
+    local orig = closeBtn:GetScript('OnClick')
+    closeBtn:SetScript('OnClick', function(btn, ...)
+        if type(owner.MarkInstallerCompletedForChar) == 'function' then
+            owner:MarkInstallerCompletedForChar()
+        end
+        if orig then
+            return orig(btn, ...)
+        end
+    end)
 end
 
 local function ApplyUIScale(value, applyNow)
@@ -280,7 +362,7 @@ end
 function LizeUI:ShowInstallWindow(force)
     EnsureInstallDefaults()
 
-    if not force and _G.LizeUIDB.welcomePromptAccepted == true then return end
+    if not force and self.IsInstallerCompletedForChar and self:IsInstallerCompletedForChar() then return end
     if self._lizeuiWelcomeShown and not force then return end
 
     if type(_G.InCombatLockdown) == 'function' and _G.InCombatLockdown() then
@@ -292,16 +374,24 @@ function LizeUI:ShowInstallWindow(force)
         return
     end
 
-    self._lizeuiWelcomeShown = true
-
-    -- Marcamos como aceptado al abrir (para que no moleste repetidamente).
-    if not force then
-        _G.LizeUIDB.welcomePromptAccepted = true
+    if not self._lizeuiPluginInstallerCloseHooked then
+        self._lizeuiPluginInstallerCloseHooked = true
+        if type(_G.hooksecurefunc) == 'function' and type(PI.CloseInstall) == 'function' then
+            _G.hooksecurefunc(PI, 'CloseInstall', function()
+                if LizeUI and type(LizeUI.MarkInstallerCompletedForChar) == 'function' then
+                    LizeUI:MarkInstallerCompletedForChar()
+                end
+            end)
+        end
     end
+
+    self._lizeuiWelcomeShown = true
 
     local function Page1()
         local f = _G.PluginInstallFrame
         if not f then return end
+
+        HookInstallerCloseButton(self, f)
 
         local ok, err = pcall(function()
             HideScaleControls(f)
@@ -1629,6 +1719,10 @@ function LizeUI:ShowInstallWindow(force)
                     f.Option1:SetSize(170, 30)
                 end
                 f.Option1:SetScript('OnClick', function()
+                    if self and type(self.MarkInstallerCompletedForChar) == 'function' then
+                        self:MarkInstallerCompletedForChar()
+                    end
+
                     -- Deshabilitar NamePlates de ElvUI ("Placas de nombre") antes del reload.
                     if E and type(E.private) == 'table' then
                         E.private.nameplates = E.private.nameplates or {}
