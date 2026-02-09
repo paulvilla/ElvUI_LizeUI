@@ -385,11 +385,26 @@ function LizeUI:ShowInstallWindow(force)
         end
     end
 
+    -- Marcar como “ya mostrado” en cuanto intentamos abrir el instalador.
+    -- Esto evita que vuelva a salir automáticamente en este personaje incluso si se cierra con la X.
+    if type(self.MarkInstallerCompletedForChar) == 'function' then
+        self:MarkInstallerCompletedForChar()
+    end
+
     self._lizeuiWelcomeShown = true
 
     local function Page1()
         local f = _G.PluginInstallFrame
         if not f then return end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
 
         HookInstallerCloseButton(self, f)
 
@@ -480,6 +495,12 @@ function LizeUI:ShowInstallWindow(force)
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- En esta página usamos un solo bloque de texto (evita overflow vertical)
             if f.Desc2 then f.Desc2:SetText('') if type(f.Desc2.Hide) == 'function' then f.Desc2:Hide() end end
@@ -527,6 +548,19 @@ function LizeUI:ShowInstallWindow(force)
         if not f then return end
 
         local ok, err = pcall(function()
+            if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+            if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+            -- Ocultar elementos comunes
+            if f.tutorialImage then f.tutorialImage:Hide() end
+            if f.tutorialImage2 then f.tutorialImage2:Hide() end
+            if f.SubTitle then f.SubTitle:Hide() end
+            if f.Desc1 then f.Desc1:Hide() end
+            if f.Desc2 then f.Desc2:Hide() end
+            if f.Desc3 then f.Desc3:Hide() end
+            if f.Desc4 then f.Desc4:Hide() end
+
             local function StripKLabelSuffix(s)
                 if type(s) ~= 'string' then return s end
                 -- Convierte "... (3K)" -> "..." (mantenemos la resolución ya incluida en el texto)
@@ -619,6 +653,12 @@ function LizeUI:ShowInstallWindow(force)
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- Botones de importación
             if f.Option1 then
@@ -715,6 +755,19 @@ function LizeUI:ShowInstallWindow(force)
         if not f then return end
 
         local ok, err = pcall(function()
+            if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+            if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+            -- Ocultar elementos comunes
+            if f.tutorialImage then f.tutorialImage:Hide() end
+            if f.tutorialImage2 then f.tutorialImage2:Hide() end
+            if f.SubTitle then f.SubTitle:Hide() end
+            if f.Desc1 then f.Desc1:Hide() end
+            if f.Desc2 then f.Desc2:Hide() end
+            if f.Desc3 then f.Desc3:Hide() end
+            if f.Desc4 then f.Desc4:Hide() end
+
             HideScaleControls(f)
 
             local function ForceVisible(fs)
@@ -812,6 +865,12 @@ function LizeUI:ShowInstallWindow(force)
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- Botones de importación (WoW Edit Mode)
             if f.Option1 then
@@ -901,6 +960,19 @@ function LizeUI:ShowInstallWindow(force)
         local f = _G.PluginInstallFrame
         if not f then return end
 
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
+
         local ok, err = pcall(function()
             local function ForceVisible(fs)
                 if not fs then return end
@@ -919,6 +991,12 @@ function LizeUI:ShowInstallWindow(force)
             -- Quitar el botón final custom (el final será en Page4)
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- Logo consistente
             if BIG_LOGO and f.tutorialImage then
@@ -994,7 +1072,7 @@ function LizeUI:ShowInstallWindow(force)
                 f.LizeUIDepsList = list
                 list:SetPoint('TOPLEFT', f, 'TOPLEFT', 20, -232)
                 list:SetPoint('TOPRIGHT', f, 'TOPRIGHT', -20, -232)
-                list:SetHeight(120)
+                list:SetHeight(90)
 
                 list.rows = {}
 
@@ -1032,12 +1110,17 @@ function LizeUI:ShowInstallWindow(force)
                     return row
                 end
 
-                for i = 1, 4 do
+                for i = 1, 3 do
                     list.rows[i] = CreateRow(i)
                 end
             end
 
             f.LizeUIDepsList:Show()
+
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
 
             local deps = {
                 {
@@ -1064,17 +1147,6 @@ function LizeUI:ShowInstallWindow(force)
                 },
                 {
                     category = 'important',
-                    folder = 'BetterCooldownManager',
-                    label = 'BetterCooldownManager',
-                    url = 'https://www.curseforge.com/wow/addons/bettercooldownmanager',
-                    import = function()
-                        if LizeUI and LizeUI.ImportBetterCooldownManager then
-                            LizeUI:ImportBetterCooldownManager()
-                        end
-                    end,
-                },
-                {
-                    category = 'important',
                     folder = 'Details',
                     label = 'Details!',
                     url = 'https://www.curseforge.com/wow/addons/details',
@@ -1086,7 +1158,7 @@ function LizeUI:ShowInstallWindow(force)
                 },
             }
 
-            for i = 1, 4 do
+            for i = 1, 3 do
                 local row = f.LizeUIDepsList.rows[i]
                 local d = deps[i]
 
@@ -1139,7 +1211,223 @@ function LizeUI:ShowInstallWindow(force)
         end
     end
 
-    local function Page5()
+    local function Page5_BCDM()
+        local f = _G.PluginInstallFrame
+        if not f then return end
+
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        local ok, err = pcall(function()
+            HideScaleControls(f)
+            local function ForceVisible(fs)
+                if not fs then return end
+                if type(fs.Show) == 'function' then fs:Show() end
+                if type(fs.SetAlpha) == 'function' then fs:SetAlpha(1) end
+                if type(fs.SetDrawLayer) == 'function' then fs:SetDrawLayer('OVERLAY', 5) end
+                if type(fs.SetTextColor) == 'function' then fs:SetTextColor(1, 1, 1) end
+            end
+
+            if type(f.Size) == 'function' then
+                f:Size(550, 420)
+            elseif type(f.SetSize) == 'function' then
+                f:SetSize(550, 420)
+            end
+
+            if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
+            if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+            -- Logo consistente
+            if BIG_LOGO and f.tutorialImage then
+                f.tutorialImage:SetTexture(BIG_LOGO)
+                if type(f.tutorialImage.SetDrawLayer) == 'function' then
+                    f.tutorialImage:SetDrawLayer('ARTWORK', 0)
+                end
+                if type(f.tutorialImage.SetVertexColor) == 'function' then
+                    f.tutorialImage:SetVertexColor(1, 1, 1)
+                end
+                if type(f.tutorialImage.SetAlpha) == 'function' then
+                    f.tutorialImage:SetAlpha(1)
+                end
+                f.tutorialImage:ClearAllPoints()
+                if type(f.tutorialImage.Size) == 'function' then
+                    f.tutorialImage:Size(256, 128)
+                else
+                    f.tutorialImage:SetSize(256, 128)
+                end
+                f.tutorialImage:Point('TOP', f, 'TOP', 0, -30)
+                f.tutorialImage:Show()
+            end
+            if f.tutorialImage2 and type(f.tutorialImage2.Hide) == 'function' then
+                f.tutorialImage2:Hide()
+            end
+
+            if f.SubTitle then
+                f.SubTitle:ClearAllPoints()
+                if f.tutorialImage and f.tutorialImage:IsShown() then
+                    f.SubTitle:Point('TOP', f.tutorialImage, 'BOTTOM', 0, -10)
+                else
+                    f.SubTitle:Point('TOP', 0, -40)
+                end
+                ForceVisible(f.SubTitle)
+            end
+
+            if f.Desc1 then
+                f.Desc1:ClearAllPoints()
+                f.Desc1:Point('TOPLEFT', 20, -185)
+                if type(f.Desc1.Width) == 'function' then
+                    f.Desc1:Width(f:GetWidth() - 40)
+                elseif type(f.Desc1.SetWidth) == 'function' then
+                    f.Desc1:SetWidth(f:GetWidth() - 40)
+                end
+                if type(f.Desc1.FontTemplate) == 'function' then
+                    f.Desc1:FontTemplate(nil, 13)
+                end
+                if type(f.Desc1.SetJustifyH) == 'function' then
+                    f.Desc1:SetJustifyH('CENTER')
+                end
+                if type(f.Desc1.SetJustifyV) == 'function' then
+                    f.Desc1:SetJustifyV('TOP')
+                end
+                ForceVisible(f.Desc1)
+            end
+
+            if f.Desc2 then f.Desc2:SetText('') if type(f.Desc2.Hide) == 'function' then f.Desc2:Hide() end end
+            if f.Desc3 then f.Desc3:SetText('') if type(f.Desc3.Hide) == 'function' then f.Desc3:Hide() end end
+            if f.Desc4 then f.Desc4:SetText('') if type(f.Desc4.Hide) == 'function' then f.Desc4:Hide() end end
+
+            if f.SubTitle then f.SubTitle:SetText(LT('INSTALL_BCDM_SUBTITLE')) end
+            if f.Desc1 then f.Desc1:SetText(LT('INSTALL_BCDM_DESC1')) end
+
+            -- No usamos los botones inferiores del PluginInstaller en esta página.
+            if f.Option1 then f.Option1:SetScript('OnClick', nil) f.Option1:Hide() end
+            if f.Option2 then f.Option2:SetScript('OnClick', nil) f.Option2:Hide() end
+            if f.Option3 then f.Option3:SetScript('OnClick', nil) f.Option3:Hide() end
+            if f.Option4 then f.Option4:SetScript('OnClick', nil) f.Option4:Hide() end
+
+            if not f.LizeUIBCDMRow then
+                local row = CreateFrame('Frame', nil, f)
+                f.LizeUIBCDMRow = row
+                row:SetPoint('TOPLEFT', f, 'TOPLEFT', 20, -252)
+                row:SetPoint('TOPRIGHT', f, 'TOPRIGHT', -20, -252)
+                row:SetHeight(24)
+
+                row.icon = row:CreateTexture(nil, 'ARTWORK')
+                row.icon:SetSize(14, 14)
+                row.icon:SetPoint('LEFT', row, 'LEFT', 0, 0)
+
+                row.text = row:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
+                row.text:SetJustifyH('LEFT')
+                row.text:SetPoint('LEFT', row.icon, 'RIGHT', 8, 0)
+                row.text:SetPoint('RIGHT', row, 'RIGHT', -96, 0)
+
+                row.dlBtn = CreateFrame('Button', nil, row, 'UIPanelButtonTemplate')
+                row.dlBtn:SetSize(90, 20)
+                row.dlBtn:SetPoint('RIGHT', row, 'RIGHT', 0, 0)
+                if S and type(S.HandleButton) == 'function' then
+                    S:HandleButton(row.dlBtn)
+                end
+            end
+
+            f.LizeUIBCDMRow:Show()
+            f.LizeUIBCDMRow.icon:SetTexture(StatusIcon('BetterCooldownManager'))
+            f.LizeUIBCDMRow.text:SetText('BetterCooldownManager')
+            f.LizeUIBCDMRow.dlBtn:SetText(LT('INSTALL_DEPS_DOWNLOAD'))
+            f.LizeUIBCDMRow.dlBtn:SetEnabled(true)
+            f.LizeUIBCDMRow.dlBtn:SetScript('OnClick', function()
+                ShowCopyUrl('https://www.curseforge.com/wow/addons/bettercooldownmanager', 'BetterCooldownManager')
+            end)
+
+            if not f.LizeUIBCDMQuestion then
+                local q = f:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
+                f.LizeUIBCDMQuestion = q
+                q:SetJustifyH('CENTER')
+                q:SetPoint('BOTTOMLEFT', f, 'BOTTOMLEFT', 20, 85)
+                q:SetPoint('BOTTOMRIGHT', f, 'BOTTOMRIGHT', -20, 85)
+            end
+
+            f.LizeUIBCDMQuestion:Show()
+            f.LizeUIBCDMQuestion:SetText(LT('INSTALL_BCDM_QUESTION'))
+
+            if not f.LizeUIBCDMAllBtn then
+                local btn = CreateFrame('Button', nil, f, 'UIPanelButtonTemplate')
+                f.LizeUIBCDMAllBtn = btn
+                btn:SetSize(170, 30)
+                btn:SetPoint('BOTTOM', f, 'BOTTOM', -180, 45)
+                if S and type(S.HandleButton) == 'function' then
+                    S:HandleButton(btn)
+                end
+            end
+
+            if not f.LizeUIBCDMManaBtn then
+                local btn = CreateFrame('Button', nil, f, 'UIPanelButtonTemplate')
+                f.LizeUIBCDMManaBtn = btn
+                btn:SetSize(170, 30)
+                btn:SetPoint('BOTTOM', f, 'BOTTOM', 0, 45)
+                if S and type(S.HandleButton) == 'function' then
+                    S:HandleButton(btn)
+                end
+            end
+
+            if not f.LizeUIBCDMNoManaBtn then
+                local btn = CreateFrame('Button', nil, f, 'UIPanelButtonTemplate')
+                f.LizeUIBCDMNoManaBtn = btn
+                btn:SetSize(170, 30)
+                btn:SetPoint('BOTTOM', f, 'BOTTOM', 180, 45)
+                if S and type(S.HandleButton) == 'function' then
+                    S:HandleButton(btn)
+                end
+            end
+
+            f.LizeUIBCDMAllBtn:Show()
+            f.LizeUIBCDMManaBtn:Show()
+            f.LizeUIBCDMNoManaBtn:Show()
+            f.LizeUIBCDMAllBtn:SetText(LT('INSTALL_BCDM_ALL_BUTTON'))
+            f.LizeUIBCDMManaBtn:SetText(LT('INSTALL_BCDM_MANA_BUTTON'))
+            f.LizeUIBCDMNoManaBtn:SetText(LT('INSTALL_BCDM_NO_MANA_BUTTON'))
+
+            local st = GetAddonStatus('BetterCooldownManager')
+            local canImport = st == 'ok'
+            f.LizeUIBCDMAllBtn:SetEnabled(canImport)
+            f.LizeUIBCDMManaBtn:SetEnabled(canImport)
+            f.LizeUIBCDMNoManaBtn:SetEnabled(canImport)
+
+            f.LizeUIBCDMAllBtn:SetScript('OnClick', function()
+                if LizeUI and type(LizeUI.ImportBetterCooldownManager) == 'function' then
+                    LizeUI:ImportBetterCooldownManager('all')
+                end
+            end)
+
+            f.LizeUIBCDMManaBtn:SetScript('OnClick', function()
+                if LizeUI and type(LizeUI.ImportBetterCooldownManager) == 'function' then
+                    LizeUI:ImportBetterCooldownManager('mana')
+                end
+            end)
+
+            f.LizeUIBCDMNoManaBtn:SetScript('OnClick', function()
+                if LizeUI and type(LizeUI.ImportBetterCooldownManager) == 'function' then
+                    LizeUI:ImportBetterCooldownManager('no_mana')
+                end
+            end)
+        end)
+
+        if not ok then
+            if not self._lizeuiInstallPage5BCDMErrorPrinted then
+                self._lizeuiInstallPage5BCDMErrorPrinted = true
+                local msg = 'LizeUI: Installer Page5 (BCDM) error: ' .. tostring(err)
+                if PrintMsg then
+                    PrintMsg(msg)
+                elseif _G.print then
+                    _G.print(msg)
+                end
+            end
+        end
+    end
+
+    local function Page6_Class()
         local f = _G.PluginInstallFrame
         if not f then return end
 
@@ -1160,8 +1448,321 @@ function LizeUI:ShowInstallWindow(force)
             end
 
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
+            if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+
+            -- Logo consistente
+            if BIG_LOGO and f.tutorialImage then
+                f.tutorialImage:SetTexture(BIG_LOGO)
+                if type(f.tutorialImage.SetDrawLayer) == 'function' then
+                    f.tutorialImage:SetDrawLayer('ARTWORK', 0)
+                end
+                if type(f.tutorialImage.SetVertexColor) == 'function' then
+                    f.tutorialImage:SetVertexColor(1, 1, 1)
+                end
+                if type(f.tutorialImage.SetAlpha) == 'function' then
+                    f.tutorialImage:SetAlpha(1)
+                end
+                f.tutorialImage:ClearAllPoints()
+                if type(f.tutorialImage.Size) == 'function' then
+                    f.tutorialImage:Size(256, 128)
+                else
+                    f.tutorialImage:SetSize(256, 128)
+                end
+                f.tutorialImage:Point('TOP', f, 'TOP', 0, -30)
+                f.tutorialImage:Show()
+            end
+            if f.tutorialImage2 and type(f.tutorialImage2.Hide) == 'function' then
+                f.tutorialImage2:Hide()
+            end
+
+            if f.SubTitle then
+                f.SubTitle:ClearAllPoints()
+                if f.tutorialImage and f.tutorialImage:IsShown() then
+                    f.SubTitle:Point('TOP', f.tutorialImage, 'BOTTOM', 0, -10)
+                else
+                    f.SubTitle:Point('TOP', 0, -40)
+                end
+                ForceVisible(f.SubTitle)
+            end
+
+            if f.Desc1 then
+                f.Desc1:ClearAllPoints()
+                f.Desc1:Point('TOPLEFT', 20, -185)
+                if type(f.Desc1.Width) == 'function' then
+                    f.Desc1:Width(f:GetWidth() - 40)
+                elseif type(f.Desc1.SetWidth) == 'function' then
+                    f.Desc1:SetWidth(f:GetWidth() - 40)
+                end
+                if type(f.Desc1.FontTemplate) == 'function' then
+                    f.Desc1:FontTemplate(nil, 13)
+                end
+                if type(f.Desc1.SetJustifyH) == 'function' then
+                    f.Desc1:SetJustifyH('CENTER')
+                end
+                if type(f.Desc1.SetJustifyV) == 'function' then
+                    f.Desc1:SetJustifyV('TOP')
+                end
+                ForceVisible(f.Desc1)
+            end
+
+            if f.Desc2 then f.Desc2:SetText('') if type(f.Desc2.Hide) == 'function' then f.Desc2:Hide() end end
+            if f.Desc3 then f.Desc3:SetText('') if type(f.Desc3.Hide) == 'function' then f.Desc3:Hide() end end
+            if f.Desc4 then f.Desc4:SetText('') if type(f.Desc4.Hide) == 'function' then f.Desc4:Hide() end end
+
+            if f.SubTitle then f.SubTitle:SetText(LT('INSTALL_CLASS_SUBTITLE')) end
+            if f.Desc1 then f.Desc1:SetText(LT('INSTALL_CLASS_DESC1')) end
+
+            local className, classFile = nil, nil
+            if type(_G.UnitClass) == 'function' then
+                className, classFile = _G.UnitClass('player')
+            end
+            className = (type(className) == 'string' and className ~= '') and className or 'Class'
+            classFile = (type(classFile) == 'string' and classFile ~= '') and classFile or ''
+
+            -- Icono de clase
+            if not f.LizeUIClassIcon then
+                local icon = f:CreateTexture(nil, 'ARTWORK')
+                f.LizeUIClassIcon = icon
+                icon:SetSize(64, 64)
+                icon:SetPoint('TOP', f.Desc1, 'BOTTOM', 0, -20)
+            end
+            local iconPath = 'Interface\\AddOns\\ElvUI_LizeUI\\media\\textures\\classes\\' .. classFile:gsub('^(.)(.*)$', function(a,b) return a:upper() .. b:lower() end) .. '.tga'
+            f.LizeUIClassIcon:SetTexture(iconPath)
+            f.LizeUIClassIcon:Show()
+
+            -- Nombre de clase
+            if not f.LizeUIClassNameText then
+                local txt = f:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
+                f.LizeUIClassNameText = txt
+                txt:SetPoint('TOP', f.LizeUIClassIcon, 'BOTTOM', 0, -10)
+                txt:SetFont('Fonts\\FRIZQT__.TTF', 20)
+                txt:SetTextColor(1, 1, 1)
+            end
+            f.LizeUIClassNameText:SetText(className)
+            f.LizeUIClassNameText:Show()
+
+            local classPrefixByFile = {
+                DEATHKNIGHT = 'deathknight',
+                DEMONHUNTER = 'demonhunter',
+                DRUID = 'druid',
+                EVOKER = 'evoker',
+                HUNTER = 'hunter',
+                MAGE = 'mage',
+                MONK = 'monk',
+                PALADIN = 'paladin',
+                PRIEST = 'priest',
+                ROGUE = 'rogue',
+                SHAMAN = 'shaman',
+                WARLOCK = 'warlock',
+                WARRIOR = 'warrior',
+            }
+
+            local classPrefix = classPrefixByFile[classFile] or (classFile ~= '' and classFile:lower() or '')
+
+            local function PrettySpecName(spec)
+                if type(spec) ~= 'string' or spec == '' then return spec end
+                local map = {
+                    beastmastery = 'Beast Mastery',
+                    marksmanship = 'Marksmanship',
+                    brewmaster = 'Brewmaster',
+                    mistweaver = 'Mistweaver',
+                    windwalker = 'Windwalker',
+                    assassination = 'Assassination',
+                    subtlety = 'Subtlety',
+                    enhancement = 'Enhancement',
+                    devastation = 'Devastation',
+                    preservation = 'Preservation',
+                    augmentation = 'Augmentation',
+                    retribution = 'Retribution',
+                    discipline = 'Discipline',
+                    demonology = 'Demonology',
+                    affliction = 'Affliction',
+                    destruction = 'Destruction',
+                    protection = 'Protection',
+                    restoration = 'Restoration',
+                    guardian = 'Guardian',
+                    balance = 'Balance',
+                    feral = 'Feral',
+                    blood = 'Blood',
+                    frost = 'Frost',
+                    unholy = 'Unholy',
+                    havoc = 'Havoc',
+                    vengeance = 'Vengeance',
+                    devourer = 'Devourer',
+                    arcane = 'Arcane',
+                    fire = 'Fire',
+                    holy = 'Holy',
+                    shadow = 'Shadow',
+                    outlaw = 'Outlaw',
+                    elemental = 'Elemental',
+                    arms = 'Arms',
+                    fury = 'Fury',
+                    survival = 'Survival',
+                }
+                if map[spec] then return map[spec] end
+                return (spec:gsub('^%l', string.upper))
+            end
+
+            local entries = {}
+            if type(_G.LizeUI_Imports) == 'table' and classPrefix ~= '' then
+                local prefix = classPrefix .. '_'
+                for key, _ in pairs(_G.LizeUI_Imports) do
+                    if type(key) == 'string' and key:sub(1, #prefix) == prefix and key:sub(-8) == '_luxthos' then
+                        local spec = key:match('^' .. classPrefix .. '_(.-)_luxthos$')
+                        if spec and spec ~= '' then
+                            entries[#entries + 1] = { key = key, spec = spec }
+                        end
+                    end
+                end
+            end
+
+            local specOrder = {
+                deathknight = { 'blood', 'frost', 'unholy' },
+                demonhunter = { 'havoc', 'vengeance', 'devourer' },
+                druid = { 'balance', 'feral', 'guardian', 'restoration' },
+                evoker = { 'devastation', 'preservation', 'augmentation' },
+                hunter = { 'beastmastery', 'marksmanship', 'survival' },
+                mage = { 'arcane', 'fire', 'frost' },
+                monk = { 'brewmaster', 'mistweaver', 'windwalker' },
+                paladin = { 'holy', 'protection', 'retribution' },
+                priest = { 'discipline', 'holy', 'shadow' },
+                rogue = { 'assassination', 'outlaw', 'subtlety' },
+                shaman = { 'elemental', 'enhancement', 'restoration' },
+                warlock = { 'affliction', 'demonology', 'destruction' },
+                warrior = { 'arms', 'fury', 'protection' },
+            }
+            local order = specOrder[classPrefix] or {}
+            local rank = {}
+            for i, s in ipairs(order) do rank[s] = i end
+            table.sort(entries, function(a, b)
+                local ra = rank[a.spec] or 999
+                local rb = rank[b.spec] or 999
+                if ra ~= rb then return ra < rb end
+                return tostring(a.spec) < tostring(b.spec)
+            end)
+
+
+            -- Mostrar botones solo si hay entries
+            if #entries > 0 then
+                if not f.LizeUIClassImportList then
+                    local list = CreateFrame('Frame', nil, f)
+                    f.LizeUIClassImportList = list
+                    list:SetPoint('TOPLEFT', f, 'TOPLEFT', 20, -350)
+                    list:SetPoint('TOPRIGHT', f, 'TOPRIGHT', -20, -350)
+                    list:SetHeight(40)
+                    list.buttons = {}
+                end
+                f.LizeUIClassImportList:Show()
+                local list = f.LizeUIClassImportList
+                for i = 1, #list.buttons do
+                    list.buttons[i]:Hide()
+                end
+                local buttonWidth = math.floor((510 - (#entries - 1) * 10) / #entries)
+                for i = 1, #entries do
+                    local entry = entries[i]
+                    local btn = list.buttons[i]
+                    if not btn then
+                        btn = CreateFrame('Button', nil, list, 'UIPanelButtonTemplate')
+                        list.buttons[i] = btn
+                        btn:SetHeight(28)
+                        btn:SetWidth(buttonWidth)
+                        btn:SetPoint('TOPLEFT', list, 'TOPLEFT', (i - 1) * (buttonWidth + 10), 0)
+                        if S and type(S.HandleButton) == 'function' then
+                            S:HandleButton(btn)
+                        end
+                    end
+                    local specLabel = PrettySpecName(entry.spec)
+                    btn:SetText(specLabel)
+                    btn:SetEnabled(true)
+                    btn:Show()
+                    btn:SetScript('OnClick', function()
+                        if LizeUI and type(LizeUI.ImportLuxthos) == 'function' then
+                            LizeUI:ImportLuxthos(entry.key, (className .. ' - ' .. specLabel))
+                        end
+                    end)
+                end
+                if f.LizeUIClassNoImportsText then f.LizeUIClassNoImportsText:Hide() end
+            else
+                if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+                if not f.LizeUIClassNoImportsText then
+                    local txt = f:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
+                    f.LizeUIClassNoImportsText = txt
+                    txt:SetPoint('TOP', f, 'TOP', 0, -370)
+                    txt:SetFont('Fonts\FRIZQT__.TTF', 15)
+                    txt:SetTextColor(1, 0.7, 0.7)
+                end
+                f.LizeUIClassNoImportsText:SetText('No hay importaciones disponibles para tu clase.')
+                f.LizeUIClassNoImportsText:Show()
+            end
+
+            -- No usamos los botones inferiores del PluginInstaller en esta página.
+            if f.Option1 then f.Option1:SetScript('OnClick', nil) f.Option1:Hide() end
+            if f.Option2 then f.Option2:SetScript('OnClick', nil) f.Option2:Hide() end
+            if f.Option3 then f.Option3:SetScript('OnClick', nil) f.Option3:Hide() end
+            if f.Option4 then f.Option4:SetScript('OnClick', nil) f.Option4:Hide() end
+        end)
+
+        if not ok then
+            if not self._lizeuiInstallPage6ClassErrorPrinted then
+                self._lizeuiInstallPage6ClassErrorPrinted = true
+                local msg = 'LizeUI: Installer Page6 (Class) error: ' .. tostring(err)
+                if PrintMsg then
+                    PrintMsg(msg)
+                elseif _G.print then
+                    _G.print(msg)
+                end
+            end
+        end
+    end
+
+    local function Page5()
+        local f = _G.PluginInstallFrame
+        if not f then return end
+
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
+
+        local ok, err = pcall(function()
+            HideScaleControls(f)
+            local function ForceVisible(fs)
+                if not fs then return end
+                if type(fs.Show) == 'function' then fs:Show() end
+                if type(fs.SetAlpha) == 'function' then fs:SetAlpha(1) end
+                if type(fs.SetDrawLayer) == 'function' then fs:SetDrawLayer('OVERLAY', 5) end
+                if type(fs.SetTextColor) == 'function' then fs:SetTextColor(1, 1, 1) end
+            end
+
+            if type(f.Size) == 'function' then
+                f:Size(550, 420)
+            elseif type(f.SetSize) == 'function' then
+                f:SetSize(550, 420)
+            end
+
+            if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- Logo consistente
             if BIG_LOGO and f.tutorialImage then
@@ -1312,6 +1913,19 @@ function LizeUI:ShowInstallWindow(force)
         local f = _G.PluginInstallFrame
         if not f then return end
 
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
+
         local ok, err = pcall(function()
             HideScaleControls(f)
             local function ForceVisible(fs)
@@ -1331,6 +1945,12 @@ function LizeUI:ShowInstallWindow(force)
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMQuestion then f.LizeUIBCDMQuestion:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
+            if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
 
             -- Logo consistente
             if BIG_LOGO and f.tutorialImage then
@@ -1459,6 +2079,19 @@ function LizeUI:ShowInstallWindow(force)
         local f = _G.PluginInstallFrame
         if not f then return end
 
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
+
         local ok, err = pcall(function()
             local function ForceVisible(fs)
                 if not fs then return end
@@ -1477,6 +2110,10 @@ function LizeUI:ShowInstallWindow(force)
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
 
             -- Logo consistente
             if BIG_LOGO and f.tutorialImage then
@@ -1621,6 +2258,19 @@ function LizeUI:ShowInstallWindow(force)
         local f = _G.PluginInstallFrame
         if not f then return end
 
+        if f.LizeUIClassIcon then f.LizeUIClassIcon:Hide() end
+        if f.LizeUIClassNameText then f.LizeUIClassNameText:Hide() end
+        if f.LizeUIClassImportList then f.LizeUIClassImportList:Hide() end
+
+        -- Ocultar elementos comunes
+        if f.tutorialImage then f.tutorialImage:Hide() end
+        if f.tutorialImage2 then f.tutorialImage2:Hide() end
+        if f.SubTitle then f.SubTitle:Hide() end
+        if f.Desc1 then f.Desc1:Hide() end
+        if f.Desc2 then f.Desc2:Hide() end
+        if f.Desc3 then f.Desc3:Hide() end
+        if f.Desc4 then f.Desc4:Hide() end
+
         local ok, err = pcall(function()
             HideScaleControls(f)
             local function ForceVisible(fs)
@@ -1639,6 +2289,10 @@ function LizeUI:ShowInstallWindow(force)
 
             if f.LizeUIDepsList then f.LizeUIDepsList:Hide() end
             if f.LizeUIRecsList then f.LizeUIRecsList:Hide() end
+            if f.LizeUIBCDMRow then f.LizeUIBCDMRow:Hide() end
+            if f.LizeUIBCDMAllBtn then f.LizeUIBCDMAllBtn:Hide() end
+            if f.LizeUIBCDMManaBtn then f.LizeUIBCDMManaBtn:Hide() end
+            if f.LizeUIBCDMNoManaBtn then f.LizeUIBCDMNoManaBtn:Hide() end
             if f.LizeUIFinishButton then f.LizeUIFinishButton:Hide() end
 
             -- Logo consistente
@@ -1755,7 +2409,7 @@ function LizeUI:ShowInstallWindow(force)
         tutorialImage = BIG_LOGO,
         tutorialImageSize = { 256, 128 },
         tutorialImageVertexColor = { 1, 1, 1 },
-        Pages = { Page1, Page2, Page3, Page4, Page5, Page6, Page7, Page8 },
+        Pages = { Page1, Page2, Page3, Page4, Page5_BCDM, Page6_Class, Page5, Page6, Page7, Page8 },
     }
 
     PI:Queue(install)

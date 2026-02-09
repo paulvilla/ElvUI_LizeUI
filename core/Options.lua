@@ -6,6 +6,7 @@ local E = ns.E
 local LizeUI = ns.LizeUI
 
 local LT = ns.LT
+local LTF = ns.LTF
 
 local BlueTitle = ns.BlueTitle
 local GradientText = ns.GradientText
@@ -19,6 +20,7 @@ local ERROR_ICON = ADDON_PATH .. 'media\\textures\\icons\\error.tga'
 local NO_ACTIVE_ICON = ADDON_PATH .. 'media\\textures\\icons\\no-active.tga'
 local BIG_LOGO = ADDON_PATH .. 'media\\textures\\icons\\lizeui_grande.tga'
 local CAFE_ICON = ADDON_PATH .. 'media\\textures\\icons\\cafe.tga'
+local CLASS_ICONS_PATH = ADDON_PATH .. 'media\\textures\\classes\\'
 
 local COPY_URL_POPUP = 'LIZEUI_EDITBOX'
 
@@ -264,6 +266,54 @@ local function UrlButton(order, label, url, width, image, imageSize)
     return t
 end
 
+local function LuxKey(prefix, token)
+    if type(token) ~= 'string' or token == '' then return prefix end
+    return prefix .. token:upper()
+end
+
+local function LuxClass(token)
+    return LT(LuxKey('OPT_LUXTHOS_CLASS_', token))
+end
+
+local function LuxSpec(token)
+    return LT(LuxKey('OPT_LUXTHOS_SPEC_', token))
+end
+
+local function LuxLabel(classToken, specToken)
+    if type(LTF) == 'function' then
+        return LTF('OPT_LUXTHOS_LABEL_FMT', LuxClass(classToken), LuxSpec(specToken))
+    end
+    return ('WoW (Luxthos) - %s: %s'):format(LuxClass(classToken), LuxSpec(specToken))
+end
+
+local function LuxConfirm()
+    return LT('OPT_LUXTHOS_CONFIRM_COOLDOWN_MANAGER')
+end
+
+local CLASS_ICON_FILES = {
+    death_knight = 'DeathKnight',
+    demon_hunter = 'DemonHunter',
+    druid = 'Druid',
+    evoker = 'Evoker',
+    hunter = 'Hunter',
+    mage = 'Mage',
+    monk = 'Monk',
+    paladin = 'Paladin',
+    priest = 'Priest',
+    rogue = 'Rogue',
+    shaman = 'Shaman',
+    warlock = 'Warlock',
+    warrior = 'Warrior',
+}
+
+local function LuxClassWithIcon(classToken)
+    local file = CLASS_ICON_FILES[classToken]
+    if type(file) == 'string' and file ~= '' then
+        return ('|T%s%s.tga:14:14:0:0|t %s'):format(CLASS_ICONS_PATH, file, LuxClass(classToken))
+    end
+    return LuxClass(classToken)
+end
+
 local function BuildOptionsTable()
     local headerArgs = {
         beforeLogo = {
@@ -481,148 +531,665 @@ local function BuildOptionsTable()
                 order = 20,
                 type = 'group',
                 name = LT('OPT_MENU_IMPORTS'),
+                childGroups = 'tab',
                 args = {
-                    importsHeader = {
-                        order = 19,
-                        type = 'header',
-                        name = BlueTitle(LT('OPT_IMPORTS_MAIN_HEADER')),
-                    },
-                    elvuiImportsBox = {
-                        order = 20,
+                    interfaceTab = {
+                        order = 1,
                         type = 'group',
-                        name = BlueTitle(LT('OPT_ELVUI_IMPORTS_TITLE')),
-                        inline = true,
+                        name = LT('OPT_IMPORTS_TAB_INTERFACE'),
                         args = {
-                            desc = {
-                                order = 1,
-                                type = 'description',
-                                name = LT('OPT_ELVUI_IMPORTS_DESC'),
+                            elvuiImportsBox = {
+                                order = 20,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_ELVUI_IMPORTS_TITLE')),
+                                inline = true,
+                                args = {
+                                    desc = {
+                                        order = 1,
+                                        type = 'description',
+                                        name = LT('OPT_ELVUI_IMPORTS_DESC'),
+                                    },
+                                    spacer = {
+                                        order = 2,
+                                        type = 'description',
+                                        name = LT('OPT_SPACER'),
+                                    },
+                                    importElvui3k = {
+                                        order = 3,
+                                        type = 'execute',
+                                        name = LT('OPT_ELVUI_3K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_ELVUI_3K_CONFIRM'),
+                                        func = function() LizeUI:ImportElvUI('elvui_3k', 'ElvUI (3K)') end,
+                                    },
+                                    importElvui2k = {
+                                        order = 4,
+                                        type = 'execute',
+                                        name = LT('OPT_ELVUI_2K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_ELVUI_2K_CONFIRM'),
+                                        func = function() LizeUI:ImportElvUI('elvui_2k', 'ElvUI (2K)') end,
+                                    },
+                                    importElvui1k = {
+                                        order = 5,
+                                        type = 'execute',
+                                        name = LT('OPT_ELVUI_1K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_ELVUI_1K_CONFIRM'),
+                                        func = function() LizeUI:ImportElvUI('elvui_1k', 'ElvUI (1K)') end,
+                                    },
+                                },
                             },
-                            spacer = {
-                                order = 2,
-                                type = 'description',
-                                name = LT('OPT_SPACER'),
+                            wowImportsBox = {
+                                order = 25,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_WOW_IMPORTS_TITLE')),
+                                inline = true,
+                                args = {
+                                    desc = {
+                                        order = 1,
+                                        type = 'description',
+                                        name = LT('OPT_WOW_IMPORTS_DESC'),
+                                    },
+                                    importantNote = {
+                                        order = 1.5,
+                                        type = 'description',
+                                        name = LT('OPT_WOW_IMPORTS_IMPORTANT'),
+                                    },
+                                    spacer = {
+                                        order = 2,
+                                        type = 'description',
+                                        name = LT('OPT_SPACER'),
+                                    },
+                                    importWow3k = {
+                                        order = 3,
+                                        type = 'execute',
+                                        name = LT('OPT_WOW_3K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_WOW_3K_CONFIRM'),
+                                        func = function() LizeUI:ImportWoWEditMode('wow_3k', 'WoW (3K)') end,
+                                    },
+                                    importWow2k = {
+                                        order = 4,
+                                        type = 'execute',
+                                        name = LT('OPT_WOW_2K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_WOW_2K_CONFIRM'),
+                                        func = function() LizeUI:ImportWoWEditMode('wow_2k', 'WoW (2K)') end,
+                                    },
+                                    importWow1k = {
+                                        order = 5,
+                                        type = 'execute',
+                                        name = LT('OPT_WOW_1K_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_WOW_1K_CONFIRM'),
+                                        func = function() LizeUI:ImportWoWEditMode('wow_1k', 'WoW (1K)') end,
+                                    },
+                                },
                             },
-                            importElvui3k = {
-                                order = 3,
-                                type = 'execute',
-                                name = LT('OPT_ELVUI_3K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_ELVUI_3K_CONFIRM'),
-                                func = function() LizeUI:ImportElvUI('elvui_3k', 'ElvUI (3K)') end,
+                            addonImportsBox = {
+                                order = 30,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_ADDON_IMPORTS_TITLE')),
+                                inline = true,
+                                args = {
+                                    desc = {
+                                        order = 1,
+                                        type = 'description',
+                                        name = LT('OPT_ADDON_IMPORTS_DESC'),
+                                    },
+                                    spacer = {
+                                        order = 2,
+                                        type = 'description',
+                                        name = LT('OPT_SPACER'),
+                                    },
+                                    importWindTools = {
+                                        order = 3,
+                                        type = 'execute',
+                                        name = LT('OPT_IMPORT_WINDTOOLS'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_WINDTOOLS'),
+                                        func = function() LizeUI:ImportWindTools() end,
+                                    },
+                                    importPlater = {
+                                        order = 4,
+                                        type = 'execute',
+                                        name = LT('OPT_IMPORT_PLATER'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_PLATER'),
+                                        func = function() LizeUI:ImportPlater() end,
+                                    },
+                                    importDetails = {
+                                        order = 5,
+                                        type = 'execute',
+                                        name = LT('OPT_IMPORT_DETAILS'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_DETAILS'),
+                                        func = function() LizeUI:ImportDetails() end,
+                                    },
+                                },
                             },
-                            importElvui2k = {
-                                order = 4,
-                                type = 'execute',
-                                name = LT('OPT_ELVUI_2K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_ELVUI_2K_CONFIRM'),
-                                func = function() LizeUI:ImportElvUI('elvui_2k', 'ElvUI (2K)') end,
-                            },
-                            importElvui1k = {
-                                order = 5,
-                                type = 'execute',
-                                name = LT('OPT_ELVUI_1K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_ELVUI_1K_CONFIRM'),
-                                func = function() LizeUI:ImportElvUI('elvui_1k', 'ElvUI (1K)') end,
+
+                            betterCooldownManagerImportsBox = {
+                                order = 31,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_IMPORT_BCDM')),
+                                inline = true,
+                                args = {
+                                    desc = {
+                                        order = 1,
+                                        type = 'description',
+                                        name = LT('OPT_CONFIRM_BCDM'),
+                                    },
+                                    spacer = {
+                                        order = 2,
+                                        type = 'description',
+                                        name = LT('OPT_SPACER'),
+                                    },
+                                    question = {
+                                        order = 3,
+                                        type = 'description',
+                                        name = LT('INSTALL_BCDM_QUESTION'),
+                                    },
+                                    importBCDMAll = {
+                                        order = 4,
+                                        type = 'execute',
+                                        name = LT('INSTALL_BCDM_ALL_BUTTON'),
+                                        width = 1.33,
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_BCDM'),
+                                        func = function() LizeUI:ImportBetterCooldownManager('all') end,
+                                    },
+                                    importBCDMMana = {
+                                        order = 5,
+                                        type = 'execute',
+                                        name = LT('INSTALL_BCDM_MANA_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_BCDM'),
+                                        func = function() LizeUI:ImportBetterCooldownManager('mana') end,
+                                    },
+                                    importBCDMNoMana = {
+                                        order = 6,
+                                        type = 'execute',
+                                        name = LT('INSTALL_BCDM_NO_MANA_BUTTON'),
+                                        confirm = true,
+                                        confirmText = LT('OPT_CONFIRM_BCDM'),
+                                        func = function() LizeUI:ImportBetterCooldownManager('no_mana') end,
+                                    },
+                                },
                             },
                         },
                     },
-                    wowImportsBox = {
-                        order = 25,
+
+                    skillsTab = {
+                        order = 2,
                         type = 'group',
-                        name = BlueTitle(LT('OPT_WOW_IMPORTS_TITLE')),
-                        inline = true,
+                        name = LT('OPT_IMPORTS_TAB_SKILLS'),
                         args = {
-                            desc = {
-                                order = 1,
-                                type = 'description',
-                                name = LT('OPT_WOW_IMPORTS_DESC'),
-                            },
-                            importantNote = {
-                                order = 1.5,
-                                type = 'description',
-                                name = LT('OPT_WOW_IMPORTS_IMPORTANT'),
-                            },
-                            spacer = {
-                                order = 2,
-                                type = 'description',
-                                name = LT('OPT_SPACER'),
-                            },
-                            importWow3k = {
-                                order = 3,
-                                type = 'execute',
-                                name = LT('OPT_WOW_3K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_WOW_3K_CONFIRM'),
-                                func = function() LizeUI:ImportWoWEditMode('wow_3k', 'WoW (3K)') end,
-                            },
-                            importWow2k = {
-                                order = 4,
-                                type = 'execute',
-                                name = LT('OPT_WOW_2K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_WOW_2K_CONFIRM'),
-                                func = function() LizeUI:ImportWoWEditMode('wow_2k', 'WoW (2K)') end,
-                            },
-                            importWow1k = {
-                                order = 5,
-                                type = 'execute',
-                                name = LT('OPT_WOW_1K_BUTTON'),
-                                confirm = true,
-                                confirmText = LT('OPT_WOW_1K_CONFIRM'),
-                                func = function() LizeUI:ImportWoWEditMode('wow_1k', 'WoW (1K)') end,
-                            },
-                        },
-                    },
-                    addonImportsBox = {
-                        order = 30,
-                        type = 'group',
-                        name = BlueTitle(LT('OPT_ADDON_IMPORTS_TITLE')),
-                        inline = true,
-                        args = {
-                            desc = {
-                                order = 1,
-                                type = 'description',
-                                name = LT('OPT_ADDON_IMPORTS_DESC'),
-                            },
-                            spacer = {
-                                order = 2,
-                                type = 'description',
-                                name = LT('OPT_SPACER'),
-                            },
-                            importWindTools = {
-                                order = 3,
-                                type = 'execute',
-                                name = LT('OPT_IMPORT_WINDTOOLS'),
-                                confirm = true,
-                                confirmText = LT('OPT_CONFIRM_WINDTOOLS'),
-                                func = function() LizeUI:ImportWindTools() end,
-                            },
-                            importPlater = {
-                                order = 4,
-                                type = 'execute',
-                                name = LT('OPT_IMPORT_PLATER'),
-                                confirm = true,
-                                confirmText = LT('OPT_CONFIRM_PLATER'),
-                                func = function() LizeUI:ImportPlater() end,
-                            },
-                            importBCDM = {
-                                order = 5,
-                                type = 'execute',
-                                name = LT('OPT_IMPORT_BCDM'),
-                                confirm = true,
-                                confirmText = LT('OPT_CONFIRM_BCDM'),
-                                func = function() LizeUI:ImportBetterCooldownManager() end,
-                            },
-                            importDetails = {
-                                order = 6,
-                                type = 'execute',
-                                name = LT('OPT_IMPORT_DETAILS'),
-                                confirm = true,
-                                confirmText = LT('OPT_CONFIRM_DETAILS'),
-                                func = function() LizeUI:ImportDetails() end,
+                            luxthosCooldownsBox = {
+                                order = 35,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_LUXTHOS_CONFIG_TITLE')),
+                                inline = true,
+                                args = {
+                                    luxthosInfo = {
+                                        order = 0.1,
+                                        type = 'description',
+                                        fontSize = 'medium',
+                                        name = LT('OPT_LUXTHOS_INFO_DESC'),
+                                        width = 'full',
+                                    },
+                                    luxthosSpacer = {
+                                        order = 0.2,
+                                        type = 'description',
+                                        name = LT('OPT_SPACER'),
+                                        width = 'full',
+                                    },
+                                    luxthosWebButton = UrlButton(0.3, LT('OPT_LUXTHOS_WEB_BUTTON'), 'https://www.luxthos.com/', 0.85),
+                                    luxthosPatreonButton = UrlButton(0.4, LT('OPT_LUXTHOS_PATREON_BUTTON'), 'https://www.patreon.com/luxthos', 1.15),
+                                    luxthosSpacer2 = {
+                                        order = 0.5,
+                                        type = 'description',
+                                        name = ' ',
+                                        width = 'full',
+                                    },
+                                    deathKnightBox = {
+                                        order = 1,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('death_knight')),
+                                        inline = true,
+                                        args = {
+                                            blood = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('blood'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('deathknight_blood_luxthos', LuxLabel('death_knight', 'blood')) end,
+                                            },
+                                            frost = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('frost'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('deathknight_frost_luxthos', LuxLabel('death_knight', 'frost')) end,
+                                            },
+                                            unholy = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('unholy'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('deathknight_unholy_luxthos', LuxLabel('death_knight', 'unholy')) end,
+                                            },
+                                        },
+                                    },
+
+                                    demonHunterBox = {
+                                        order = 2,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('demon_hunter')),
+                                        inline = true,
+                                        args = {
+                                            havoc = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('havoc'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('demonhunter_havoc_luxthos', LuxLabel('demon_hunter', 'havoc')) end,
+                                            },
+                                            vengeance = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('vengeance'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('demonhunter_vengeance_luxthos', LuxLabel('demon_hunter', 'vengeance')) end,
+                                            },
+                                            devourer = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('devourer'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('demonhunter_devourer_luxthos', LuxLabel('demon_hunter', 'devourer')) end,
+                                            },
+                                        },
+                                    },
+
+                                    druidBox = {
+                                        order = 3,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('druid')),
+                                        inline = true,
+                                        args = {
+                                            balance = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('balance'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('druid_balance_luxthos', LuxLabel('druid', 'balance')) end,
+                                            },
+                                            feral = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('feral'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('druid_feral_luxthos', LuxLabel('druid', 'feral')) end,
+                                            },
+                                            guardian = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('guardian'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('druid_guardian_luxthos', LuxLabel('druid', 'guardian')) end,
+                                            },
+                                            restoration = {
+                                                order = 4,
+                                                type = 'execute',
+                                                name = LuxSpec('restoration'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('druid_restoration_luxthos', LuxLabel('druid', 'restoration')) end,
+                                            },
+                                        },
+                                    },
+
+                                    evokerBox = {
+                                        order = 4,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('evoker')),
+                                        inline = true,
+                                        args = {
+                                            augmentation = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('augmentation'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('evoker_augmentation_luxthos', LuxLabel('evoker', 'augmentation')) end,
+                                            },
+                                            devastation = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('devastation'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('evoker_devastation_luxthos', LuxLabel('evoker', 'devastation')) end,
+                                            },
+                                            preservation = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('preservation'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('evoker_preservation_luxthos', LuxLabel('evoker', 'preservation')) end,
+                                            },
+                                        },
+                                    },
+
+                                    hunterBox = {
+                                        order = 5,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('hunter')),
+                                        inline = true,
+                                        args = {
+                                            beastMastery = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('beast_mastery'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('hunter_beastmastery_luxthos', LuxLabel('hunter', 'beast_mastery')) end,
+                                            },
+                                            marksmanship = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('marksmanship'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('hunter_marksmanship_luxthos', LuxLabel('hunter', 'marksmanship')) end,
+                                            },
+                                            survival = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('survival'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('hunter_survival_luxthos', LuxLabel('hunter', 'survival')) end,
+                                            },
+                                        },
+                                    },
+
+                                    mageBox = {
+                                        order = 6,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('mage')),
+                                        inline = true,
+                                        args = {
+                                            arcane = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('arcane'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('mage_arcane_luxthos', LuxLabel('mage', 'arcane')) end,
+                                            },
+                                            fire = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('fire'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('mage_fire_luxthos', LuxLabel('mage', 'fire')) end,
+                                            },
+                                            frost = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('frost'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('mage_frost_luxthos', LuxLabel('mage', 'frost')) end,
+                                            },
+                                        },
+                                    },
+
+                                    monkBox = {
+                                        order = 7,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('monk')),
+                                        inline = true,
+                                        args = {
+                                            brewmaster = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('brewmaster'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('monk_brewmaster_luxthos', LuxLabel('monk', 'brewmaster')) end,
+                                            },
+                                            mistweaver = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('mistweaver'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('monk_mistweaver_luxthos', LuxLabel('monk', 'mistweaver')) end,
+                                            },
+                                            windwalker = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('windwalker'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('monk_windwalker_luxthos', LuxLabel('monk', 'windwalker')) end,
+                                            },
+                                        },
+                                    },
+
+                                    paladinBox = {
+                                        order = 8,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('paladin')),
+                                        inline = true,
+                                        args = {
+                                            holy = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('holy'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('paladin_holy_luxthos', LuxLabel('paladin', 'holy')) end,
+                                            },
+                                            protection = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('protection'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('paladin_protection_luxthos', LuxLabel('paladin', 'protection')) end,
+                                            },
+                                            retribution = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('retribution'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('paladin_retribution_luxthos', LuxLabel('paladin', 'retribution')) end,
+                                            },
+                                        },
+                                    },
+
+                                    priestBox = {
+                                        order = 9,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('priest')),
+                                        inline = true,
+                                        args = {
+                                            discipline = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('discipline'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('priest_discipline_luxthos', LuxLabel('priest', 'discipline')) end,
+                                            },
+                                            holy = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('holy'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('priest_holy_luxthos', LuxLabel('priest', 'holy')) end,
+                                            },
+                                            shadow = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('shadow'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('priest_shadow_luxthos', LuxLabel('priest', 'shadow')) end,
+                                            },
+                                        },
+                                    },
+
+                                    rogueBox = {
+                                        order = 10,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('rogue')),
+                                        inline = true,
+                                        args = {
+                                            assassination = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('assassination'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('rogue_assassination_luxthos', LuxLabel('rogue', 'assassination')) end,
+                                            },
+                                            outlaw = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('outlaw'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('rogue_outlaw_luxthos', LuxLabel('rogue', 'outlaw')) end,
+                                            },
+                                            subtlety = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('subtlety'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('rogue_subtlety_luxthos', LuxLabel('rogue', 'subtlety')) end,
+                                            },
+                                        },
+                                    },
+
+                                    shamanBox = {
+                                        order = 11,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('shaman')),
+                                        inline = true,
+                                        args = {
+                                            elemental = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('elemental'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('shaman_elemental_luxthos', LuxLabel('shaman', 'elemental')) end,
+                                            },
+                                            enhancement = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('enhancement'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('shaman_enhancement_luxthos', LuxLabel('shaman', 'enhancement')) end,
+                                            },
+                                            restoration = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('restoration'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('shaman_restoration_luxthos', LuxLabel('shaman', 'restoration')) end,
+                                            },
+                                        },
+                                    },
+
+                                    warlockBox = {
+                                        order = 12,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('warlock')),
+                                        inline = true,
+                                        args = {
+                                            affliction = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('affliction'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warlock_affliction_luxthos', LuxLabel('warlock', 'affliction')) end,
+                                            },
+                                            demonology = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('demonology'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warlock_demonology_luxthos', LuxLabel('warlock', 'demonology')) end,
+                                            },
+                                            destruction = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('destruction'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warlock_destruction_luxthos', LuxLabel('warlock', 'destruction')) end,
+                                            },
+                                        },
+                                    },
+
+                                    warriorBox = {
+                                        order = 13,
+                                        type = 'group',
+                                        name = BlueTitle(LuxClassWithIcon('warrior')),
+                                        inline = true,
+                                        args = {
+                                            arms = {
+                                                order = 1,
+                                                type = 'execute',
+                                                name = LuxSpec('arms'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warrior_arms_luxthos', LuxLabel('warrior', 'arms')) end,
+                                            },
+                                            fury = {
+                                                order = 2,
+                                                type = 'execute',
+                                                name = LuxSpec('fury'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warrior_fury_luxthos', LuxLabel('warrior', 'fury')) end,
+                                            },
+                                            protection = {
+                                                order = 3,
+                                                type = 'execute',
+                                                name = LuxSpec('protection'),
+                                                confirm = true,
+                                                confirmText = LuxConfirm(),
+                                                func = function() LizeUI:ImportLuxthos('warrior_protection_luxthos', LuxLabel('warrior', 'protection')) end,
+                                            },
+                                        },
+                                    },
+                                },
                             },
                         },
                     },

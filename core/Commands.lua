@@ -22,10 +22,15 @@ function LizeUI:HandleSlashCommand(msg)
 
     if cmd == 'help' then
         PrintMsg(LT('CMD_HELP_TITLE'))
+        -- Orden solicitado:
+        -- help → install → install_reset → install_reset_all → test_english → test_spanish → test_reset_language
+        PrintMsg(LT('CMD_HELP_LINE4'))
+        if LT('CMD_HELP_LINE5') then PrintMsg(LT('CMD_HELP_LINE5')) end
+        if LT('CMD_HELP_LINE6') then PrintMsg(LT('CMD_HELP_LINE6')) end
+        if LT('CMD_HELP_LINE7') then PrintMsg(LT('CMD_HELP_LINE7')) end
         PrintMsg(LT('CMD_HELP_LINE1'))
         PrintMsg(LT('CMD_HELP_LINE2'))
         PrintMsg(LT('CMD_HELP_LINE3'))
-        PrintMsg(LT('CMD_HELP_LINE4'))
         return
     end
 

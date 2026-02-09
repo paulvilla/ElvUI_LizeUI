@@ -2,7 +2,7 @@
 ## Interface-Classic: 11505
 ## Interface-BCC: 20504
 ## Author: Lizerius
-## Version: 1.1.2
+## Version: 1.3.4
 ## Title: |cff1784d1ElvUI|r |cff00c0faL|r|cff1aabfbi|r|cff3495fcz|r|cff4e80fde|r|cff686afeU|r|cff8255ffI|r
 ## Notes: Importa perfiles LizeUI (2K/3K) + integraciones (Plater/Details/BCDM/WindTools) y utilidades QoL.
 ## AddonCompartmentFunc: LizeUI_OnAddonCompartmentClick
@@ -28,8 +28,50 @@ imports\profiles\wow_2k.lua
 imports\profiles\wow_1k.lua
 imports\profiles\WindTools.lua
 imports\profiles\Plater.lua
-imports\profiles\BetterCooldownManager.lua
+imports\profiles\BetterCooldownManager_all.lua
+imports\profiles\BetterCooldownManager_mana.lua
+imports\profiles\BetterCooldownManager_no-mana.lua
 imports\profiles\Details.lua
+imports\profiles\Luxthos\deathknight_blood.lua
+imports\profiles\Luxthos\deathknight_frost.lua
+imports\profiles\Luxthos\deathknight_unholy.lua
+imports\profiles\Luxthos\demonhunter_havoc.lua
+imports\profiles\Luxthos\demonhunter_vengeance.lua
+imports\profiles\Luxthos\demonhunter_devourer.lua
+imports\profiles\Luxthos\druid_balance.lua
+imports\profiles\Luxthos\druid_feral.lua
+imports\profiles\Luxthos\druid_guardian.lua
+imports\profiles\Luxthos\druid_restoration.lua
+imports\profiles\Luxthos\evoker_augmentation.lua
+imports\profiles\Luxthos\evoker_devastation.lua
+imports\profiles\Luxthos\evoker_preservation.lua
+imports\profiles\Luxthos\hunter_beastmastery.lua
+imports\profiles\Luxthos\hunter_marksmanship.lua
+imports\profiles\Luxthos\hunter_survival.lua
+imports\profiles\Luxthos\mage_arcane.lua
+imports\profiles\Luxthos\mage_fire.lua
+imports\profiles\Luxthos\mage_frost.lua
+imports\profiles\Luxthos\monk_brewmaster.lua
+imports\profiles\Luxthos\monk_mistweaver.lua
+imports\profiles\Luxthos\monk_windwalker.lua
+imports\profiles\Luxthos\paladin_holy.lua
+imports\profiles\Luxthos\paladin_protection.lua
+imports\profiles\Luxthos\paladin_retribution.lua
+imports\profiles\Luxthos\priest_discipline.lua
+imports\profiles\Luxthos\priest_holy.lua
+imports\profiles\Luxthos\priest_shadow.lua
+imports\profiles\Luxthos\rogue_assassination.lua
+imports\profiles\Luxthos\rogue_outlaw.lua
+imports\profiles\Luxthos\rogue_subtlety.lua
+imports\profiles\Luxthos\shaman_elemental.lua
+imports\profiles\Luxthos\shaman_enhancement.lua
+imports\profiles\Luxthos\shaman_restoration.lua
+imports\profiles\Luxthos\warlock_affliction.lua
+imports\profiles\Luxthos\warlock_demonology.lua
+imports\profiles\Luxthos\warlock_destruction.lua
+imports\profiles\Luxthos\warrior_arms.lua
+imports\profiles\Luxthos\warrior_fury.lua
+imports\profiles\Luxthos\warrior_protection.lua
 imports\Imports.lua
 core\Bootstrap.lua
 core\Utils.lua

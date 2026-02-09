@@ -243,7 +243,7 @@ function LizeUI:Initialize()
     end
 
     if _G.C_Timer and type(_G.C_Timer.After) == 'function' then
-        _G.C_Timer.After(1, function()
+        _G.C_Timer.After(3, function()
             if LizeUI and LizeUI.ShowInstallWindow then
                 LizeUI:ShowInstallWindow(false)
             end
