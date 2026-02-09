@@ -9,6 +9,27 @@ L.OPT_INFO_TITLE = 'Information'
 L.OPT_INFO_DESC = 'From here you can enable/disable LizeUI features and import profiles for ElvUI and companion addons.\n\nNote: some options may require /reload to fully apply.'
 L.OPT_SPACER = ' '
 
+-- Side menu sections
+L.OPT_MENU_DEPENDENCIES = 'Dependencies'
+L.OPT_MENU_FEATURES = 'Features'
+L.OPT_MENU_IMPORTS = 'Imports'
+L.OPT_MENU_RESOURCES = 'Resources'
+L.OPT_MENU_INFORMATION = 'Information'
+
+L.OPT_INFO_SECTION_TITLE = 'Donors'
+L.OPT_INFO_SECTION_DESC = ' '
+
+L.OPT_DONATE_TITLE = 'Donations'
+L.OPT_DONATE_LINE1_FMT = 'Thank you for using %s!'
+L.OPT_DONATE_LINE2 = 'With your support I can keep improving the interface and maintaining compatibility with new game/ElvUI updates.'
+L.OPT_DONATE_LINE3 = 'Donations may also give you access to direct communication with development and requests for custom modules.'
+L.OPT_DONATE_BUTTON_PATREON = 'Donate (Patreon)'
+
+L.OPT_LINKS_TITLE = 'Links'
+L.OPT_LINKS_DESC = 'You can download LizeUI from these sources:'
+L.OPT_LINK_CURSEFORGE = 'CurseForge'
+L.OPT_LINK_WAGO = 'Wago.io'
+
 L.OPT_DEPS_TITLE = 'Important/Recommended Addon Dependencies'
 L.OPT_DEPS_DESC = 'These addons are important to make the interface look the same. If the icon is red, enable/install them on the character selection screen → AddOns.'
 

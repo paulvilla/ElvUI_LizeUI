@@ -9,6 +9,27 @@ L.OPT_INFO_TITLE = 'Información'
 L.OPT_INFO_DESC = 'Desde aquí puedes activar o desactivar funciones de LizeUI e importar perfiles para ElvUI y addons complementarios.\n\nNota: algunas opciones pueden requerir /reload para aplicarse por completo.'
 L.OPT_SPACER = ' '
 
+-- Side menu sections
+L.OPT_MENU_DEPENDENCIES = 'Dependencias'
+L.OPT_MENU_FEATURES = 'Funciones'
+L.OPT_MENU_IMPORTS = 'Importaciones'
+L.OPT_MENU_RESOURCES = 'Recursos'
+L.OPT_MENU_INFORMATION = 'Información'
+
+L.OPT_INFO_SECTION_TITLE = 'Donadores'
+L.OPT_INFO_SECTION_DESC = ' '
+
+L.OPT_DONATE_TITLE = 'Donaciones'
+L.OPT_DONATE_LINE1_FMT = 'Gracias por usar %s!'
+L.OPT_DONATE_LINE2 = 'Con tu apoyo podré seguir mejorando la interfaz y manteniendo la compatibilidad con nuevas actualizaciones del juego y de ElvUI.'
+L.OPT_DONATE_LINE3 = 'Además, con las donaciones podrás optar a comunicación directa con el desarrollo y solicitar módulos personalizados.'
+L.OPT_DONATE_BUTTON_PATREON = 'Donar (Patreon)'
+
+L.OPT_LINKS_TITLE = 'Enlaces'
+L.OPT_LINKS_DESC = 'Puedes conseguir LizeUI desde estas fuentes:'
+L.OPT_LINK_CURSEFORGE = 'CurseForge'
+L.OPT_LINK_WAGO = 'Wago.io'
+
 L.OPT_DEPS_TITLE = 'Dependencias Addon Imprescindibles/Recomendados'
 L.OPT_DEPS_DESC = 'Estos addons son imprescindibles para que la interfaz se vea igual. Si ves el icono en rojo, revisa en la pantalla de selección de personaje → AddOns que estén instalados y activados.'
 

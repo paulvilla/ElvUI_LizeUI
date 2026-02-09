@@ -17,6 +17,8 @@ local LIZEUI_ICON_PATH = ns.LIZEUI_ICON_PATH
 local OK_ICON = ADDON_PATH .. 'media\\textures\\icons\\ok.tga'
 local ERROR_ICON = ADDON_PATH .. 'media\\textures\\icons\\error.tga'
 local NO_ACTIVE_ICON = ADDON_PATH .. 'media\\textures\\icons\\no-active.tga'
+local BIG_LOGO = ADDON_PATH .. 'media\\textures\\icons\\lizeui_grande.tga'
+local CAFE_ICON = ADDON_PATH .. 'media\\textures\\icons\\cafe.tga'
 
 local COPY_URL_POPUP = 'LIZEUI_EDITBOX'
 
@@ -217,347 +219,432 @@ local function AddonStatusButton(order, label, addonFolder, url, width, iconSize
     return t
 end
 
+local function DisabledOption(option)
+    if type(option) == 'table' then
+        option.disabled = true
+    end
+    return option
+end
+
+local function UrlButton(order, label, url, width, image, imageSize)
+    local t = {
+        order = order,
+        type = 'execute',
+        name = label,
+        func = function()
+            if type(url) ~= 'string' or url == '' then return end
+
+            if EnsureCopyUrlPopup() and E and type(E.StaticPopup_Show) == 'function' then
+                if E.PopupDialogs and E.PopupDialogs[COPY_URL_POPUP] then
+                    E.PopupDialogs[COPY_URL_POPUP].text = label or 'LizeUI'
+                end
+                E:StaticPopup_Show(COPY_URL_POPUP, nil, nil, url)
+                return
+            end
+
+            local show = _G.StaticPopup_Show
+            if type(show) == 'function' then
+                if _G.StaticPopupDialogs and _G.StaticPopupDialogs[COPY_URL_POPUP] then
+                    _G.StaticPopupDialogs[COPY_URL_POPUP].text = label or 'LizeUI'
+                end
+                show(COPY_URL_POPUP, url)
+            end
+        end,
+    }
+    if width ~= nil then
+        t.width = width
+    end
+
+    if type(image) == 'string' and image ~= '' then
+        t.image = image
+        local size = type(imageSize) == 'number' and imageSize or 14
+        t.imageWidth = size
+        t.imageHeight = size
+    end
+    return t
+end
+
 local function BuildOptionsTable()
+    local headerArgs = {
+        beforeLogo = {
+            order = 1,
+            type = 'description',
+            fontSize = 'medium',
+            name = ' ',
+            width = 'full',
+        },
+        logo = {
+            order = 2,
+            type = 'description',
+            name = '',
+            image = function()
+                return BIG_LOGO, 256, 128
+            end,
+        },
+        afterLogo = {
+            order = 3,
+            type = 'description',
+            fontSize = 'medium',
+            name = ' \n ',
+            width = 'full',
+        },
+    }
+
     return {
         type = 'group',
+        childGroups = 'tree',
         name = ('|T%s:14:14:0:0|t %s'):format(LIZEUI_ICON_PATH, GradientText('LizeUI', 0, 192, 250, 130, 85, 255)),
         icon = LIZEUI_ICON_PATH,
         iconCoords = { 0.08, 0.92, 0.08, 0.92 },
         order = 100,
         args = {
-            launchInstaller = {
-                order = 1,
-                type = 'execute',
-                name = LT('OPT_LAUNCH_INSTALLER'),
-                func = function()
-                    local ACD = E and E.Libs and E.Libs.AceConfigDialog
-                    if ACD and type(ACD.Close) == 'function' then
-                        pcall(ACD.Close, ACD, 'ElvUI')
-                    end
+            beforeLogo = headerArgs.beforeLogo,
+            logo = headerArgs.logo,
+            afterLogo = headerArgs.afterLogo,
 
-                    local function Launch()
-                        if LizeUI and type(LizeUI.ShowInstallWindow) == 'function' then
-                            LizeUI:ShowInstallWindow(true)
-                        end
-                    end
-
-                    if _G.C_Timer and type(_G.C_Timer.After) == 'function' then
-                        _G.C_Timer.After(0, Launch)
-                    else
-                        Launch()
-                    end
-                end,
-            },
-            depsHeader = {
-                order = 5,
-                type = 'header',
-                name = BlueTitle(LT('OPT_DEPS_TITLE')),
-            },
-            depsDescBox = {
-                order = 6,
-                type = 'group',
-                name = LT('OPT_SPACER'),
-                inline = true,
-                args = {
-                    desc = {
-                        order = 1,
-                        type = 'description',
-                        name = LT('OPT_DEPS_DESC'),
-                    },
-                    legendLine = {
-                        order = 1.5,
-                        type = 'description',
-                        fontSize = 'medium',
-                        name = function()
-                            local parts = {
-                                ('|T%s:14:14:0:0|t %s'):format(OK_ICON, LT('OPT_DEPS_LEGEND_ACTIVE')),
-                                ('|T%s:14:14:0:0|t %s'):format(NO_ACTIVE_ICON, LT('OPT_DEPS_LEGEND_INACTIVE')),
-                                ('|T%s:14:14:0:0|t %s'):format(ERROR_ICON, LT('OPT_DEPS_LEGEND_MISSING')),
-                            }
-                            return table.concat(parts, '     ')
-                        end,
-                    },
-                    spacerDeps = {
-                        order = 1.6,
-                        type = 'description',
-                        name = LT('OPT_SPACER'),
-                    },
-                    mandatoryAddonsBox = {
-                        order = 2,
-                        type = 'group',
-                        name = BlueTitle(LT('OPT_DEPS_MANDATORY_STATUS_TITLE')),
-                        inline = true,
-                        args = {
-                            windTools = AddonStatusButton(1, 'ElvUI_WindTools', 'ElvUI_WindTools', 'https://www.curseforge.com/wow/addons/elvui-windtools'),
-                        },
-                    },
-                    addonsBox = {
-                        order = 3,
-                        type = 'group',
-                        name = BlueTitle(LT('OPT_DEPS_STATUS_TITLE')),
-                        inline = true,
-                        args = {
-                            plater = AddonStatusButton(1, 'Plater', 'Plater', 'https://www.curseforge.com/wow/addons/plater-nameplates'),
-                            bcdm = AddonStatusButton(2, 'BetterCooldownManager', 'BetterCooldownManager', 'https://www.curseforge.com/wow/addons/bettercooldownmanager', 1.66),
-                            addonSkins = AddonStatusButton(3, 'AddOnSkins', 'AddOnSkins', 'https://www.curseforge.com/wow/addons/addonskins'),
-                            details = AddonStatusButton(4, 'Details!', 'Details', 'https://www.curseforge.com/wow/addons/details'),
-                        },
-                    },
-                    recommendedAddonsBox = {
-                        order = 4,
-                        type = 'group',
-                        name = BlueTitle(LT('OPT_DEPS_RECOMMENDED_STATUS_TITLE')),
-                        inline = true,
-                        args = {
-                            cursorRing = AddonStatusButton(1, 'CursorRing', 'CursorRing', 'https://www.curseforge.com/wow/addons/cursorring'),
-                            hidingBar = AddonStatusButton(2, 'HidingBar', 'HidingBar', 'https://www.curseforge.com/wow/addons/hidingbar'),
-                            immersion = AddonStatusButton(3, 'Immersion', 'Immersion', 'https://www.curseforge.com/wow/addons/immersion'),
-                            sam = AddonStatusButton(4, 'SimpleAddonManager', 'SimpleAddonManager', 'https://www.curseforge.com/wow/addons/simple-addon-manager', 1.66),
-                        },
-                    },
-                },
-            },
-            qolHeader = {
-                order = 9,
-                type = 'header',
-                name = BlueTitle(LT('OPT_QOL_HEADER')),
-            },
-            infoBox = {
+            dependencies = {
                 order = 10,
                 type = 'group',
-                name = BlueTitle(LT('OPT_INFO_TITLE')),
-                inline = true,
+                name = LT('OPT_MENU_DEPENDENCIES'),
                 args = {
-                    desc = {
+                    launchInstaller = {
                         order = 1,
-                        type = 'description',
-                        name = LT('OPT_INFO_DESC'),
-                    },
-                    spacer = {
-                        order = 2,
-                        type = 'description',
-                        name = LT('OPT_SPACER'),
-                    },
-                },
-            },
-            qolBox = {
-                order = 11,
-                type = 'group',
-                name = BlueTitle(LT('OPT_QOL_BOX_TITLE')),
-                inline = true,
-                width = 0.5,
-                args = {
-                    suppressRightClick = {
-                        order = 1,
-                        type = 'toggle',
-                        name = LT('OPT_SUPPRESS_RIGHTCLICK_NAME'),
-                        desc = LT('OPT_SUPPRESS_RIGHTCLICK_DESC'),
-                        get = function() return LizeUIDB.features.suppressRightClick end,
-                        set = function(_, value)
-                            LizeUIDB.features.suppressRightClick = value
-                            LizeUI:ApplyFeature('suppressRightClick', value)
-                        end,
-                    },
-                    globalFadePersist = {
-                        order = 2,
-                        type = 'toggle',
-                        name = LT('OPT_GLOBAL_FADE_NAME'),
-                        desc = LT('OPT_GLOBAL_FADE_DESC'),
-                        get = function() return LizeUIDB.features.globalFadePersist end,
-                        set = function(_, value)
-                            LizeUIDB.features.globalFadePersist = value
-                            LizeUI:ApplyFeature('globalFadePersist', value)
-                        end,
-                    },
-                },
-            },
-            bugfixBox = {
-                order = 12,
-                type = 'group',
-                name = BlueTitle(LT('OPT_BUGFIX_BOX_TITLE')),
-                inline = true,
-                width = 0.5,
-                args = {
-                    hidePetDemonBar = {
-                        order = 1,
-                        type = 'toggle',
-                        name = LT('OPT_HIDE_PET_DEMON_NAME'),
-                        desc = LT('OPT_HIDE_PET_DEMON_DESC'),
-                        get = function() return LizeUIDB.features.hidePetDemonBar end,
-                        set = function(_, value)
-                            LizeUIDB.features.hidePetDemonBar = value
-                            LizeUI:ApplyFeature('hidePetDemonBar', value)
-                        end,
-                    },
-                    disableFriendlyNPCHealthBars = {
-                        order = 2,
-                        type = 'toggle',
-                        name = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_NAME'),
-                        desc = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_DESC'),
-                        get = function() return LizeUIDB.features.disableFriendlyNPCHealthBars end,
-                        set = function(_, value)
-                            LizeUIDB.features.disableFriendlyNPCHealthBars = value
-                            LizeUI:ApplyFeature('disableFriendlyNPCHealthBars', value)
-                        end,
-                    },
-                },
-            },
-            importsHeader = {
-                order = 19,
-                type = 'header',
-                name = BlueTitle(LT('OPT_IMPORTS_MAIN_HEADER')),
-            },
-            elvuiImportsBox = {
-                order = 20,
-                type = 'group',
-                name = BlueTitle(LT('OPT_ELVUI_IMPORTS_TITLE')),
-                inline = true,
-                args = {
-                    desc = {
-                        order = 1,
-                        type = 'description',
-                        name = LT('OPT_ELVUI_IMPORTS_DESC'),
-                    },
-                    spacer = {
-                        order = 2,
-                        type = 'description',
-                        name = LT('OPT_SPACER'),
-                    },
-                    importElvui3k = {
-                        order = 3,
                         type = 'execute',
-                        name = LT('OPT_ELVUI_3K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_ELVUI_3K_CONFIRM'),
-                        func = function() LizeUI:ImportElvUI('elvui_3k', 'ElvUI (3K)') end,
+                        name = LT('OPT_LAUNCH_INSTALLER'),
+                        func = function()
+                            local ACD = E and E.Libs and E.Libs.AceConfigDialog
+                            if ACD and type(ACD.Close) == 'function' then
+                                pcall(ACD.Close, ACD, 'ElvUI')
+                            end
+
+                            local function Launch()
+                                if LizeUI and type(LizeUI.ShowInstallWindow) == 'function' then
+                                    LizeUI:ShowInstallWindow(true)
+                                end
+                            end
+
+                            if _G.C_Timer and type(_G.C_Timer.After) == 'function' then
+                                _G.C_Timer.After(0, Launch)
+                            else
+                                Launch()
+                            end
+                        end,
                     },
-                    importElvui2k = {
-                        order = 4,
-                        type = 'execute',
-                        name = LT('OPT_ELVUI_2K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_ELVUI_2K_CONFIRM'),
-                        func = function() LizeUI:ImportElvUI('elvui_2k', 'ElvUI (2K)') end,
-                    },
-                    importElvui1k = {
+                    depsHeader = {
                         order = 5,
-                        type = 'execute',
-                        name = LT('OPT_ELVUI_1K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_ELVUI_1K_CONFIRM'),
-                        func = function() LizeUI:ImportElvUI('elvui_1k', 'ElvUI (1K)') end,
+                        type = 'header',
+                        name = BlueTitle(LT('OPT_DEPS_TITLE')),
+                    },
+                    depsDescBox = {
+                        order = 6,
+                        type = 'group',
+                        name = LT('OPT_SPACER'),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_DEPS_DESC'),
+                            },
+                            legendLine = {
+                                order = 1.5,
+                                type = 'description',
+                                fontSize = 'medium',
+                                name = function()
+                                    local parts = {
+                                        ('|T%s:14:14:0:0|t %s'):format(OK_ICON, LT('OPT_DEPS_LEGEND_ACTIVE')),
+                                        ('|T%s:14:14:0:0|t %s'):format(NO_ACTIVE_ICON, LT('OPT_DEPS_LEGEND_INACTIVE')),
+                                        ('|T%s:14:14:0:0|t %s'):format(ERROR_ICON, LT('OPT_DEPS_LEGEND_MISSING')),
+                                    }
+                                    return table.concat(parts, '     ')
+                                end,
+                            },
+                            spacerDeps = {
+                                order = 1.6,
+                                type = 'description',
+                                name = LT('OPT_SPACER'),
+                            },
+                            mandatoryAddonsBox = {
+                                order = 2,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_DEPS_MANDATORY_STATUS_TITLE')),
+                                inline = true,
+                                args = {
+                                    windTools = AddonStatusButton(1, 'ElvUI_WindTools', 'ElvUI_WindTools', 'https://www.curseforge.com/wow/addons/elvui-windtools'),
+                                },
+                            },
+                            addonsBox = {
+                                order = 3,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_DEPS_STATUS_TITLE')),
+                                inline = true,
+                                args = {
+                                    plater = AddonStatusButton(1, 'Plater', 'Plater', 'https://www.curseforge.com/wow/addons/plater-nameplates'),
+                                    bcdm = AddonStatusButton(2, 'BetterCooldownManager', 'BetterCooldownManager', 'https://www.curseforge.com/wow/addons/bettercooldownmanager', 1.66),
+                                    addonSkins = DisabledOption(AddonStatusButton(3, 'AddOnSkins', 'AddOnSkins', 'https://www.curseforge.com/wow/addons/addonskins')),
+                                    details = AddonStatusButton(4, 'Details!', 'Details', 'https://www.curseforge.com/wow/addons/details'),
+                                },
+                            },
+                            recommendedAddonsBox = {
+                                order = 4,
+                                type = 'group',
+                                name = BlueTitle(LT('OPT_DEPS_RECOMMENDED_STATUS_TITLE')),
+                                inline = true,
+                                args = {
+                                    cursorRing = AddonStatusButton(1, 'CursorRing', 'CursorRing', 'https://www.curseforge.com/wow/addons/cursorring'),
+                                    hidingBar = AddonStatusButton(2, 'HidingBar', 'HidingBar', 'https://www.curseforge.com/wow/addons/hidingbar'),
+                                    immersion = AddonStatusButton(3, 'Immersion', 'Immersion', 'https://www.curseforge.com/wow/addons/immersion'),
+                                    sam = AddonStatusButton(4, 'SimpleAddonManager', 'SimpleAddonManager', 'https://www.curseforge.com/wow/addons/simple-addon-manager', 1.66),
+                                },
+                            },
+                        },
                     },
                 },
             },
 
-            wowImportsBox = {
-                order = 25,
-                type = 'group',
-                name = BlueTitle(LT('OPT_WOW_IMPORTS_TITLE')),
-                inline = true,
-                args = {
-                    desc = {
-                        order = 1,
-                        type = 'description',
-                        name = LT('OPT_WOW_IMPORTS_DESC'),
-                    },
-                    importantNote = {
-                        order = 1.5,
-                        type = 'description',
-                        name = LT('OPT_WOW_IMPORTS_IMPORTANT'),
-                    },
-                    spacer = {
-                        order = 2,
-                        type = 'description',
-                        name = LT('OPT_SPACER'),
-                    },
-                    importWow3k = {
-                        order = 3,
-                        type = 'execute',
-                        name = LT('OPT_WOW_3K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_WOW_3K_CONFIRM'),
-                        func = function() LizeUI:ImportWoWEditMode('wow_3k', 'WoW (3K)') end,
-                    },
-                    importWow2k = {
-                        order = 4,
-                        type = 'execute',
-                        name = LT('OPT_WOW_2K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_WOW_2K_CONFIRM'),
-                        func = function() LizeUI:ImportWoWEditMode('wow_2k', 'WoW (2K)') end,
-                    },
-                    importWow1k = {
-                        order = 5,
-                        type = 'execute',
-                        name = LT('OPT_WOW_1K_BUTTON'),
-                        confirm = true,
-                        confirmText = LT('OPT_WOW_1K_CONFIRM'),
-                        func = function() LizeUI:ImportWoWEditMode('wow_1k', 'WoW (1K)') end,
-                    },
-                },
-            },
-            addonImportsBox = {
+            features = {
                 order = 30,
                 type = 'group',
-                name = BlueTitle(LT('OPT_ADDON_IMPORTS_TITLE')),
-                inline = true,
+                name = LT('OPT_MENU_FEATURES'),
                 args = {
-                    desc = {
-                        order = 1,
-                        type = 'description',
-                        name = LT('OPT_ADDON_IMPORTS_DESC'),
+                    qolHeader = {
+                        order = 9,
+                        type = 'header',
+                        name = BlueTitle(LT('OPT_QOL_HEADER')),
                     },
-                    spacer = {
-                        order = 2,
-                        type = 'description',
-                        name = LT('OPT_SPACER'),
+                    qolBox = {
+                        order = 11,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_QOL_BOX_TITLE')),
+                        inline = true,
+                        width = 0.5,
+                        args = {
+                            suppressRightClick = {
+                                order = 1,
+                                type = 'toggle',
+                                name = LT('OPT_SUPPRESS_RIGHTCLICK_NAME'),
+                                desc = LT('OPT_SUPPRESS_RIGHTCLICK_DESC'),
+                                get = function() return LizeUIDB.features.suppressRightClick end,
+                                set = function(_, value)
+                                    LizeUIDB.features.suppressRightClick = value
+                                    LizeUI:ApplyFeature('suppressRightClick', value)
+                                end,
+                            },
+                            globalFadePersist = {
+                                order = 2,
+                                type = 'toggle',
+                                name = LT('OPT_GLOBAL_FADE_NAME'),
+                                desc = LT('OPT_GLOBAL_FADE_DESC'),
+                                get = function() return LizeUIDB.features.globalFadePersist end,
+                                set = function(_, value)
+                                    LizeUIDB.features.globalFadePersist = value
+                                    LizeUI:ApplyFeature('globalFadePersist', value)
+                                end,
+                            },
+                        },
                     },
-                    importWindTools = {
-                        order = 3,
-                        type = 'execute',
-                        name = LT('OPT_IMPORT_WINDTOOLS'),
-                        confirm = true,
-                        confirmText = LT('OPT_CONFIRM_WINDTOOLS'),
-                        func = function() LizeUI:ImportWindTools() end,
-                    },
-                    importPlater = {
-                        order = 4,
-                        type = 'execute',
-                        name = LT('OPT_IMPORT_PLATER'),
-                        confirm = true,
-                        confirmText = LT('OPT_CONFIRM_PLATER'),
-                        func = function() LizeUI:ImportPlater() end,
-                    },
-                    importBCDM = {
-                        order = 5,
-                        type = 'execute',
-                        name = LT('OPT_IMPORT_BCDM'),
-                        confirm = true,
-                        confirmText = LT('OPT_CONFIRM_BCDM'),
-                        func = function() LizeUI:ImportBetterCooldownManager() end,
-                    },
-                    importDetails = {
-                        order = 6,
-                        type = 'execute',
-                        name = LT('OPT_IMPORT_DETAILS'),
-                        confirm = true,
-                        confirmText = LT('OPT_CONFIRM_DETAILS'),
-                        func = function() LizeUI:ImportDetails() end,
+                    bugfixBox = {
+                        order = 12,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_BUGFIX_BOX_TITLE')),
+                        inline = true,
+                        width = 0.5,
+                        args = {
+                            hidePetDemonBar = {
+                                order = 1,
+                                type = 'toggle',
+                                name = LT('OPT_HIDE_PET_DEMON_NAME'),
+                                desc = LT('OPT_HIDE_PET_DEMON_DESC'),
+                                get = function() return LizeUIDB.features.hidePetDemonBar end,
+                                set = function(_, value)
+                                    LizeUIDB.features.hidePetDemonBar = value
+                                    LizeUI:ApplyFeature('hidePetDemonBar', value)
+                                end,
+                            },
+                            disableFriendlyNPCHealthBars = {
+                                order = 2,
+                                type = 'toggle',
+                                name = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_NAME'),
+                                desc = LT('OPT_DISABLE_FRIENDLY_NPC_HEALTHBARS_DESC'),
+                                get = function() return LizeUIDB.features.disableFriendlyNPCHealthBars end,
+                                set = function(_, value)
+                                    LizeUIDB.features.disableFriendlyNPCHealthBars = value
+                                    LizeUI:ApplyFeature('disableFriendlyNPCHealthBars', value)
+                                end,
+                            },
+                        },
                     },
                 },
             },
-            otherImportsHeader = {
-                order = 40,
-                type = 'header',
-                name = BlueTitle(LT('OPT_OTHER_IMPORTS_HEADER')),
-            },
-            otherImportsBox = {
-                order = 41,
+
+            imports = {
+                order = 20,
                 type = 'group',
-                name = LT('OPT_SPACER'),
-                inline = true,
+                name = LT('OPT_MENU_IMPORTS'),
                 args = {
+                    importsHeader = {
+                        order = 19,
+                        type = 'header',
+                        name = BlueTitle(LT('OPT_IMPORTS_MAIN_HEADER')),
+                    },
+                    elvuiImportsBox = {
+                        order = 20,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_ELVUI_IMPORTS_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_ELVUI_IMPORTS_DESC'),
+                            },
+                            spacer = {
+                                order = 2,
+                                type = 'description',
+                                name = LT('OPT_SPACER'),
+                            },
+                            importElvui3k = {
+                                order = 3,
+                                type = 'execute',
+                                name = LT('OPT_ELVUI_3K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_ELVUI_3K_CONFIRM'),
+                                func = function() LizeUI:ImportElvUI('elvui_3k', 'ElvUI (3K)') end,
+                            },
+                            importElvui2k = {
+                                order = 4,
+                                type = 'execute',
+                                name = LT('OPT_ELVUI_2K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_ELVUI_2K_CONFIRM'),
+                                func = function() LizeUI:ImportElvUI('elvui_2k', 'ElvUI (2K)') end,
+                            },
+                            importElvui1k = {
+                                order = 5,
+                                type = 'execute',
+                                name = LT('OPT_ELVUI_1K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_ELVUI_1K_CONFIRM'),
+                                func = function() LizeUI:ImportElvUI('elvui_1k', 'ElvUI (1K)') end,
+                            },
+                        },
+                    },
+                    wowImportsBox = {
+                        order = 25,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_WOW_IMPORTS_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_WOW_IMPORTS_DESC'),
+                            },
+                            importantNote = {
+                                order = 1.5,
+                                type = 'description',
+                                name = LT('OPT_WOW_IMPORTS_IMPORTANT'),
+                            },
+                            spacer = {
+                                order = 2,
+                                type = 'description',
+                                name = LT('OPT_SPACER'),
+                            },
+                            importWow3k = {
+                                order = 3,
+                                type = 'execute',
+                                name = LT('OPT_WOW_3K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_WOW_3K_CONFIRM'),
+                                func = function() LizeUI:ImportWoWEditMode('wow_3k', 'WoW (3K)') end,
+                            },
+                            importWow2k = {
+                                order = 4,
+                                type = 'execute',
+                                name = LT('OPT_WOW_2K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_WOW_2K_CONFIRM'),
+                                func = function() LizeUI:ImportWoWEditMode('wow_2k', 'WoW (2K)') end,
+                            },
+                            importWow1k = {
+                                order = 5,
+                                type = 'execute',
+                                name = LT('OPT_WOW_1K_BUTTON'),
+                                confirm = true,
+                                confirmText = LT('OPT_WOW_1K_CONFIRM'),
+                                func = function() LizeUI:ImportWoWEditMode('wow_1k', 'WoW (1K)') end,
+                            },
+                        },
+                    },
+                    addonImportsBox = {
+                        order = 30,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_ADDON_IMPORTS_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_ADDON_IMPORTS_DESC'),
+                            },
+                            spacer = {
+                                order = 2,
+                                type = 'description',
+                                name = LT('OPT_SPACER'),
+                            },
+                            importWindTools = {
+                                order = 3,
+                                type = 'execute',
+                                name = LT('OPT_IMPORT_WINDTOOLS'),
+                                confirm = true,
+                                confirmText = LT('OPT_CONFIRM_WINDTOOLS'),
+                                func = function() LizeUI:ImportWindTools() end,
+                            },
+                            importPlater = {
+                                order = 4,
+                                type = 'execute',
+                                name = LT('OPT_IMPORT_PLATER'),
+                                confirm = true,
+                                confirmText = LT('OPT_CONFIRM_PLATER'),
+                                func = function() LizeUI:ImportPlater() end,
+                            },
+                            importBCDM = {
+                                order = 5,
+                                type = 'execute',
+                                name = LT('OPT_IMPORT_BCDM'),
+                                confirm = true,
+                                confirmText = LT('OPT_CONFIRM_BCDM'),
+                                func = function() LizeUI:ImportBetterCooldownManager() end,
+                            },
+                            importDetails = {
+                                order = 6,
+                                type = 'execute',
+                                name = LT('OPT_IMPORT_DETAILS'),
+                                confirm = true,
+                                confirmText = LT('OPT_CONFIRM_DETAILS'),
+                                func = function() LizeUI:ImportDetails() end,
+                            },
+                        },
+                    },
+                },
+            },
+
+            resources = {
+                order = 40,
+                type = 'group',
+                name = LT('OPT_MENU_RESOURCES'),
+                args = {
+                    otherImportsHeader = {
+                        order = 40,
+                        type = 'header',
+                        name = BlueTitle(LT('OPT_OTHER_IMPORTS_HEADER')),
+                    },
+                    otherImportsBox = {
+                        order = 41,
+                        type = 'group',
+                        name = LT('OPT_SPACER'),
+                        inline = true,
+                        args = {
                     desc = {
                         order = 1,
                         type = 'description',
@@ -595,6 +682,112 @@ local function BuildOptionsTable()
                                 name = function()
                                     return BuildLSMResourceList('font', ADDON_PATH .. 'media\\fonts')
                                 end,
+                            },
+                        },
+                    },
+                        },
+                    },
+                },
+            },
+
+            information = {
+                order = 50,
+                type = 'group',
+                name = LT('OPT_MENU_INFORMATION'),
+                args = {
+                    infoTopBox = {
+                        order = 1,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_INFO_SECTION_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_INFO_SECTION_DESC'),
+                            },
+                            spacer = {
+                                order = 2,
+                                type = 'description',
+                                name = ' \n ',
+                                width = 'full',
+                            },
+                        },
+                    },
+                    donateBox = {
+                        order = 2,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_DONATE_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                fontSize = 'medium',
+                                name = function()
+                                    local gradient = GradientText('LizeUI', 0, 192, 250, 130, 85, 255)
+                                    return (LT('OPT_DONATE_LINE1_FMT'):format(gradient) .. '\n' .. LT('OPT_DONATE_LINE2') .. '\n' .. LT('OPT_DONATE_LINE3'))
+                                end,
+                            },
+                            spacer = {
+                                order = 1.5,
+                                type = 'description',
+                                name = ' \n ',
+                                width = 'full',
+                            },
+                            patreon = UrlButton(2, ('|T%s:14:14:0:0|t %s'):format(CAFE_ICON, LT('OPT_DONATE_BUTTON_PATREON')), 'https://www.patreon.com/Lizerius', 1.7),
+                        },
+                    },
+                    linksBox = {
+                        order = 3,
+                        type = 'group',
+                        name = BlueTitle(LT('OPT_LINKS_TITLE')),
+                        inline = true,
+                        args = {
+                            desc = {
+                                order = 1,
+                                type = 'description',
+                                name = LT('OPT_LINKS_DESC'),
+                            },
+                            spacer = {
+                                order = 1.5,
+                                type = 'description',
+                                name = ' ',
+                                width = 'full',
+                            },
+                            curseforgeLabel = {
+                                order = 2,
+                                type = 'description',
+                                name = LT('OPT_LINK_CURSEFORGE'),
+                                width = 'full',
+                            },
+                            curseforgeUrl = {
+                                order = 2.1,
+                                type = 'input',
+                                name = '',
+                                width = 'full',
+                                get = function() return 'https://www.curseforge.com/wow/addons/elvui-lizeui' end,
+                                set = function() end,
+                            },
+                            spacer2 = {
+                                order = 2.2,
+                                type = 'description',
+                                name = ' ',
+                                width = 'full',
+                            },
+                            wagoLabel = {
+                                order = 3,
+                                type = 'description',
+                                name = LT('OPT_LINK_WAGO'),
+                                width = 'full',
+                            },
+                            wagoUrl = {
+                                order = 3.1,
+                                type = 'input',
+                                name = '',
+                                width = 'full',
+                                get = function() return 'https://addons.wago.io/addons/lizeui' end,
+                                set = function() end,
                             },
                         },
                     },
