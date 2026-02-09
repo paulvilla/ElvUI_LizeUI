@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Mage: Arcane (Cooldown Manager)
+_G.LizeUI_ImportStrings.mage_arcane_luxthos = "1|Lc49S0IBFMbxc0TqC8Sh5zhoH8AGe0NvSC9zQnMh2FUCocDG3i9eIuwLRFsNTU0VRDnY1NBy79ySClGtbV2XOury+58znePHjy/HV736uYNGhMYvzpJAD4igPtAGOgiqkGXIDLqnkCyCN4gDmUe3iJAgC5AlyBRkDpKDTEMykDxkFuoq8XsciZoSbwRKnH1SYvfHpqYS58aMCyV2kkqcH1Xikxa0DH1BWLDtWYlvH5T4btfYM/aNA+PQODJulPg+bUwaa8b6/53HT+PL+Fbi14+rmIdEbcLvP4KwYKe0fA20vXqMR4DOsNGwvUHVHzSo9uttrZQ2K6l0anHHLW1X/gA="

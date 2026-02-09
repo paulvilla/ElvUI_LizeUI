@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Evoker: Devastation (Cooldown Manager)
+_G.LizeUI_ImportStrings.evoker_devastation_luxthos = "1|TdA9S4JRGAbg84g8QXvRfSZrzqmGykpIW9r6A4mDRQQpJUZbb2+8Y2Q1tAaGfSwODUoKQuVXFtkPkJf6Ea1xl0PLdZ8PznPOc46CB5djruNexOHtw1uCVqE1aBlagdatkcyCNdIpwitxMgptMueh79AXaBf6hqFh9L+hbe7MkjlrAtE8tAPtoX8PbaG/Cv+ZezMkYo18fkEfoU843oM/AV+skY2iNbK2Yo0kRsg6/BiXr8ktuePxE5Inp+QM2oBf4PDcGmn0rJEmr2g9kKo10l4kUfYyRaYJq3ZuCEt3J0mYJMiHNfIaLIj7vy3JRAIu3+0XoI3Q4d+neKVxB37sClp23IAotDLI6iBrg6z/ppNdzqW3UjuhcCieyiV3s8nsZnr7Bw=="

@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Paladin: Protection (Cooldown Manager)
+_G.LizeUI_ImportStrings.paladin_protection_luxthos = "1|PdC7SgNBFAbg2UVs1Fb4p8rGUoX/FWzEG2TVFzB4IyIJmGyuXrK7gSQWip2VJhrwDdJY5jVskz5NavnXYPOd/zDDcM60Fpr91WgWv25htIygiqAGhgjqYGyNs1QEI7ANttTtgy9gAN6DVfABbIIVnayBT+AdeIvyClgD62ADLINdjL4RNKxxTo7BR1SmYEfdNsrr4LPiDiYexkPFXbEnDkRG+OJQHFnjXH2KN/EuBqIn+uLDGheX1rg2LbLWuN6GuBA90Re65/1Y46Yzwh+YMNnRjcBuMm1KH+G1/8bEeAh2tMDEQ2X6BYZh7DqLYDSv8by25rWd1OTN/1RMUjQr+dnr7Fkun9pM+TeF0vlpKVfI/wI="

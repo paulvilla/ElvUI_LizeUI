@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Shaman: Enhancement (Cooldown Manager)
+_G.LizeUI_ImportStrings.shaman_enhancement_luxthos = "1|NdDJL0NRGAXwe0vEAgnSxLmrWll50jaRaNNHn0gsKFLsa0gq0hoiUTu0TfwJtuIvkKC0hqIlhrAwLkrMw7YLFjZy+mLz+869N3kv34kVzy7VtM9/RxcHoQWhjcE+A20S2gScWTiscFdA98GzBncH9Dzc9WhZg2tICen1wxuHqxJNP3C1Q2+AJ8/rLtJNetAyDe8jYwfpxFcVpw+GG/YcPBE0r0IPKSFTA3xIoXFcCVldzsMW2Sa7JE32yAHJwDnKmUWRlfOQHCkhR3pJHyx51PkY+/lyTE7IKTkjV+RaCZk8Z7phumC6JXckR+5JYYsn8kxeyCt5I+/kg3wqIY0NskmSvHtQQiaWeOQSBncyuJOxT7iOkVFCxsqYEkrInVYl5O66EjL9q4S8DCghr0rJihLyumrZEvv/mlmc+QdbnMXqIbbqicCeq10w20le/BdrdpI8Zz3O0WVoE3NRiyyBw2pOZ7Yw57+n/MFAKBC21dvawsFAeHA4NBye+gM="

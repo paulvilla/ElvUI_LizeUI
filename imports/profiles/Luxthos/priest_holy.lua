@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Priest: Holy (Cooldown Manager)
+_G.LizeUI_ImportStrings.priest_holy_luxthos = "1|Xc8/S0JhFMfx81z0crz5OERgvwPFJSxFCUTK6J9BU9Bi0NIcDUERZA1teRXbmtvKtEGKhqaWgggaWnoBvYSWlqQxjvdOLZ8vD+cZzmnGTtujM0G/cbEEHoKXAyfBFuzBlsEMjoNdcAJeHl5ByKk8CJnepZCznkHxCcVnfV/BVmDnkLqBXYCdh11Eqgu7LGQyJaQJwx8YeUdtFekVIZOd0MGb8itkJvPKufIjZKayypbyrZ83lZbyKGRyY8q4UlU2FJ1ufwqZs5jypUu1lWulo3SFzO2xkLmbVV6FzP1Lh+qDo5zmv91KfhCe1wPH6w3HuGA3KkdNRPWiJqPasF4hrC0PGvT3q4e7O7Ujf9pfO9g7+QM="

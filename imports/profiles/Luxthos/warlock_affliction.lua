@@ -1,0 +1,5 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Brujo: Aflicción
+-- Pega aquí el export cuando lo tengas.
+_G.LizeUI_ImportStrings.warlock_affliction_luxthos = "1|RY4rS0RhEIZnDib/gPtOWg1vswhWwbSKP8CgRY4e2PXoomwwysdy2OolGCxiM/kTLBbxfkEtshsMgph0v+QiUzzlYZ6B4Zn20PZRZSH0w8EEOmsmmv06BuAzOjn4iphhdg58QVxBbIO34AN4Az4inoP34AV4ibgM3pkkw3uOXfAJMQWvwStf7JhoLBynrvs+LZrozwB8N9GvM/DNRBtqojMjjoprYqK1E9cpE/3YMNHPMUfNj7Ych2DXRL8nwd6xhvKHpPgvl9GiLI8GsAd2Q781v7SZN9PV6nh1OsvyetqqN9f/AA=="

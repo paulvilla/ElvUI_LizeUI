@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Demon Hunter: Vengeance (Cooldown Manager)
+_G.LizeUI_ImportStrings.demonhunter_vengeance_luxthos = "1|LZC9TgJBFIXvjujqG3CmWhurM6GxtrJQbJxC8CdAVrIqBWs0GgyVLAivYGsgoi/gA1hb+hzGisTERDOz29zvzrm5557MqHT/VO5ni+HjJuwF7Bh8hp2CY9gO2AQbsDOwDbbAEUwVfNAS/E5d2QeHYAaegIfgKXgA1sBjsA4egbEWVapoUUsbWpQ6A+ewe0781qJk103etajgR4uqbqH3ARNqCeI6zBp6E/BFS/DXd1IL5lOLWh7ArGpRYdc9vlz35pavZpKBYx9LZeDcO0ZZHnl94ldyv7juE8CEuVWp8go2BkMVrIDNgq2C7YKjnLZTcObpz7ku8J/itWxxV95OupdptHOb3iTXkYlqSXqexGk7+Qc="

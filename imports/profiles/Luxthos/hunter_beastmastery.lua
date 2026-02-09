@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Hunter: Beast Mastery (Cooldown Manager)
+_G.LizeUI_ImportStrings.hunter_beastmastery_luxthos = "1|Nc47LwRhGAXg95uI+AnOm7x8ik00Ej9AQjaIwrrFpWQwBYViZ8jMZ7BjtyCISqIiy+4f0GiIH+JaqF12aom8Es1zipOTnFpbpd7ZnVXPB5DeILlCcsvkFS+ZvP57OAsZh8xDJtCKIQvIP5B/Ig0hM5ASZA5dBJmEzCL/YjLDgocLJnM4BJmCTMM1UGih8I3CX70G19Q8ZTIjP0xmtJfJrMfKtuKUVNlRdpU9pcJk4kVlSVlWVpRV5Z3JHDwqT8qz8qK8Km/6aJDJHN0xmeMzJnPSoTP/2svgGnb//3VPBtesw9ms6pn2bGtscyMKyrbPFgM/jGzJD6OgnPwC"

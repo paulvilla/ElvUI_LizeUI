@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Monk: Brewmaster (Cooldown Manager)
+_G.LizeUI_ImportStrings.monk_brewmaster_luxthos = "1|LdDNSkJBGAbgOaOld1DvgHikYL6KCLqE9t5BEEFCZSpYTNsORtAu3NS2Vi3atOgmin6gMjP6HdcRlJ78KeOb3Dzv+83qZTajG/vDmaC0l4ZZgcnC5GDy0L/QPSW85DtMGaYA6oAEKAKSsNM42YXuQHehG7B30E3YGnQLdhZ2C7YCHUJ/Q//AVqHbsDHYOKiBsQQoroTnp0CfoBjoSwlv7gU0AGpi/AMTU6AuKOTnMyW8xR1u58wFc8lcoR4FtbleMzfMLVNl7kEtzhrzwDwyT8wz88q8MVYJmVhilpWQyVMlpD/ELDDHSsiRIyZUQo5WDmTg5qa23Ui3mUKeTS23vI169BC6F5SkNwgS/ZScHijSvzv/aQr9LLt0H+5aUEwX8lnfn/Rnipn13PzqWqb4Bw=="

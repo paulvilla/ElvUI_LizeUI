@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Death Knight: Unholy (Cooldown Manager)
+_G.LizeUI_ImportStrings.deathknight_unholy_luxthos = "1|NZE/S8NQFMXvjaEKWhXR2vNAjG4OfgaXIgU3Qerg0kHaam4yWAU3a13F2tY/oCJF/AbioF2KSz+Bg4NbC4ogjqJUvUldfve8l5z3zkn27J1afK5mF08TkDhkHNIP99sQZ2KQFJp1uB0IGeLRDMSC9EFsyAC8N8ggpAe+D/8GEoX0GuK1V8gwZAgSUU/OEJeeDfFByxAfrqBVgoxAYoasmS3dmjDEiy+QMTW/6+JW1cefu8qGuLKhKqnqTk9cN8ST86o8hWuIow11fOlSFBVDXG4b4ty9om7Imn7UB1XFkeJYcWKI058a4kzxpDYolhWXeq++fP5giC9+rrgQNHJ2w+8wtR+GLreDOmHabp3/tEHQahIy0m0Slo42ruF2CkWLIxDqzlQ4m/VgBn9AFdfszcRqOp91FrxcJpt3Zp0lL+u7278="

@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Death Knight: Blood (Cooldown Manager)
+_G.LizeUI_ImportStrings.deathknight_blood_luxthos = "1|VY67SgNBFIZnxsTCGO0G/2lmZdKJb2AatbMQ0oSUC4oJiNusilaGBISApWC7SAJ5jLBVgsRLfIRYZHM13sBKziSNzffxn8M5/OXYVbCWDuKluy20qpAT5BaQi0GO0ZxA9iCHMGnICPoJ+hEmAZOEbismdnLQrzDL0C+QA5hVmBWEt+huQHegnxXj7gimqhgvnMI0yGcw+4qJRJ3COeGCPrURZihc0k2kGO9XCFmkpGJi6YHGA5gaeUh4J3wSvgjfhB/Cr2K8O1WMv10rxqMbAkW3T/ggTBUTSe9elP+PR3bnFKE76xVbyvZASsI0EGZsc97P2kK2i0jUa5C9YknwRcho7uHc45lNeubmxDqI+7uHrp939k4KR3nf2XS2jz3v4A8="

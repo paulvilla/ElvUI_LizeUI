@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Druid: Balance (Cooldown Manager)
+_G.LizeUI_ImportStrings.druid_balance_luxthos = "1|NdG5SwNREAbwN08RLEynzDxUVlAro/+AWmRtFLEIGrSMOUCIiQbTG5MueBQWki5sYzCtBGw3jRek9oCIFimj4oGVfLuk+X0zy7DD7BZ79yucyRfOVo2ijYBRtP7HCU6iq3CNm+yywxEuS7vO70KaP4SOhY6E9oQOZWmeX4SqQizUI+QaRakLoYbUT42ipyrHOG4UPV4ZRa0SL/OKkC16QHSAc1gyZBRtz4I5tIOoIiANMmAH7Ipew0ADG66NoocWqjtwD27BDUa9uWEwAkbBhFG0+Qre0E6CKRAE02AGjOML/Irdb5QOd/C2rNglPPwxip4XUX2DT/AloROsrUnoUuykUNDRBzjSKvr3dq8fK+JaHe50rzjnSL6gqY/Lfjh+1Pxw/Wh6Ie26l94v8ap8ZiGb24pbQSsUTUXTscQ/"

@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Monk: Mistweaver (Cooldown Manager)
+_G.LizeUI_ImportStrings.monk_mistweaver_luxthos = "1|LY29TsJgGIXftxivoeeb6gX4tiR6AQ6O2N4CA4qYaPyJrhYwcVCRAMY4GDTGxEUq2FmLiW7GQVmMyMTkwMRsPtrleYZzck55av/KXC6OS+dzkCPICeRYEWdbGqHGo8aDRkejDanj7wJSgVQhp5AaHE8nAaSBrgnHhbME+w22D+lDfmHfwV6B/Qr7C3IG+VHE7QVFnL9UxJ2eIsP9UGR484o4GCL61llT4xqR7kQ9Rfyib54XMfpUxO8tpAuKuH+oiJ9YEYcpjO4hgxvy4bjGQbLK+SbShXgzGFo+pD5T1s3JTJiCDG4hFb9k8DSkmriWuBHb8WJ3zYmL483MxvqaNWtlVrd39nLZ3dzWPw=="

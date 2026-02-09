@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Warrior: Protection (Cooldown Manager)
+_G.LizeUI_ImportStrings.warrior_protection_luxthos = "1|Lc4/T8JAHMbxu5ZUURCi0ficFAqF0cnortOzKOri5KDGGBabNH0BavHPS9CxhoHFhc2wOxsnfAMSZxcTHcwPb/l8f5e73F03d5EVMze93wJXQB+sgDVwFsyBJTAEy6AHumAdbIAFo3RPYfAJGnAGnAIXMPwGl8E5cBpvH2AeLILz4CK4hEEfBNgEW0bp4038PmMYGqXP2kY5/hPGP0bpUU2oCL7s7Qn7RunXVKZDmbrCnXAt3Ai3Run1L4yNUU51TRYPwotReiMQdoRtoS2fd4zS73mZtLwlR0bVR+cKbIHNejq56f+9nu6D7mXqaA/0bAu2Jduybd22YRtOmrnJwVEcd6I4WA124yg5PUk60fkf"

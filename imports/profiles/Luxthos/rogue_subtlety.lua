@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Rogue: Subtlety (Cooldown Manager)
+_G.LizeUI_ImportStrings.rogue_subtlety_luxthos = "1|Lc+/S8NgEMbxt2+lo6I1aZ7XKHHqUDp30H+guIgujiIUIQiKtoO9xdiCZkgTnLRbwBSH7q4q+FunUhwyuNnBpbh0EuRMl8/3pjuuOXEUGoUw3ThfUiK1+YXTVbhDRG34eXgmvAG8Mup99EYgDWSApkHA2YcScnIfpBB9g3IgHTQHmoWrg7LoLIPmcfILMtFxlZDaD2gBrQ0EMbol0IwSKfuGuWXumHvmgXlknphn5gVBgFaBx1fmjXlXQk5llJDZC/gxVyCw+VRRCalfKyFzK8ynEtI4uBTHyYekSQfdkuXAzy82EdjJcvjxFep9pyFTGZCW1B0m9cxxy+MOkkbtpL3Rf8P03trudq1iFa312lZ1p1I9/AM="

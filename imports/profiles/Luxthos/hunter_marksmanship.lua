@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Hunter: Marksmanship (Cooldown Manager)
+_G.LizeUI_ImportStrings.hunter_marksmanship_luxthos = "1|Nc+7SgNhEAXg+YPo7sJuJcTzg7B2EvENLEQUbARfIcVqvAVNDAhuwL14zYqFt7RJ8FoatDQIFuozBKx8goVgKSdg851hppiZeGCvMeKGvag+DeMJRhtmFkYXSQ5mA/YZzBYK77DfkH4g/YSVhdmEXcXoK6wh2D7SLy1qto2OD8uAZcJe16LmduEMI/HgTHH8TF7Y90lVi1o9JEckICGJtKidC1Yx2ScH7HlkiZyTSziLzGVyBUeY16ROfrSo4xtyS+7IPXkgj1rUyZYWVUu0qGRCizrlMb8zWjLj361M0H/ADdDxx+L+Rf/r4EgTRjeIMmoQSa6fYa8yXylueyV30l3Il9bKG/liubCy+Qc="

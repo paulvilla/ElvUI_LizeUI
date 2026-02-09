@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Priest: Discipline (Cooldown Manager)
+_G.LizeUI_ImportStrings.priest_discipline_luxthos = "1|LdC7TgJBGAXg2YkxEyDZBRvPVCuFooJXErHQxERjYuU7GIpNjBCRxsoVxPu1EFsLE2vlIvgAVLzB0irGzhdQz0Lznclk/sycKQ4cPA7Pu4WHNag61BtC+1Dv8JrwftGJItyCakI1oKrw8lAVqJoWcnlBC7nR1cJIzGphxF2YHwgNwewiMorQOswvmJ+IlGB+89AcgnUtjEwZgQysGKwAp861kIuWFjLVhpfkTpEckRI5JifklJxpIe0fri7IJbki1+SG3JI7ck/KvHyMxMg4mSCTJE4SZIpMkxktjOywFnLphbySihZyRT6JQ785VNVwEazLAqyYXwNWwHb9vxgp9p8oU22/HLzkM1TFLUhj8H+wn7V+NvrZ7GW41Usv38tO1E83t7nrpHN7dsJedXJbTnbb2Un/AQ=="

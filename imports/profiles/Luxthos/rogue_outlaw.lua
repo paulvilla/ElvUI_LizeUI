@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Rogue: Outlaw (Cooldown Manager)
+_G.LizeUI_ImportStrings.rogue_outlaw_luxthos = "1|LdC7SgNBFAbgmSiiLxD9p4qFjbDTWHpNGVACYZNKIUHUIqIWidEUXjZ5gR1SCKYwmdw2W4mooCIEn8Ai4N1KsLFNChs5uzbfP8OcOXMpDh5VxiatXuEkCrkIuYS6ARmHNOFE0NKQCThlwfjlHDEDNQo1ATUFdS4YvzqDCqOmoUZg/0JFYX/CfoD9iNo37B+oFag01D7VVmB0oTQafciUYDxdgkwKxteX4Q6g+oz2NHSQjpknFgTjO6s0CqNK9TcZ2uSRJXaJPciYYLzj0iRH0FnpvGD8+kUw7rwSb8Q78UENZ5G/EIzfxan0kDigHjWiQTSJOtESjCe/4J4Kxm+HaZNJJGjNIdqC8fsnHbAgU2j0QxY90eiOF/1Ld1x6mQ42Ic3jQoAPQSb8rBt+trSfTuQ/y156f+6NrN5WbHsjuxYyQtFsZjOV+wM="

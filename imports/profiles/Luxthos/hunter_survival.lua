@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Hunter: Survival (Cooldown Manager)
+_G.LizeUI_ImportStrings.hunter_survival_luxthos = "1|PdC7SgNREAbgcxLxGfwPDLspbJR9AiFGozGpJYVCCosUuhIwmCWFoGusNomXbtslWHkBsfOWRLBTX0Fs1FI3YC3/FjYfU8z5z8wcjO1FE5ko3QrzkBWjUrkdyCqkYpSuhcRD7ECKkBziMqQEd4BRGe4QsgCZhSxBvuE+GqU3AljXkDlIAe4nRrtG6cUpSBYyD8mj/wTrxyjd/DJKd57JC3nF5Axbp4ljlC5ckjfyztwO6ZJDckSOyQnTbsgtuSP3ZECGhIM1P4zSwRk5JxeEfwRXRun2L4eoGqW7JV7ggS/6jG/Dik+Vn5xF+8mGKT9ZwPYh2cw+rDjp60Eqfiulx5OL/VdhUkXprWKjtl2t24693Kh7697a5h8="

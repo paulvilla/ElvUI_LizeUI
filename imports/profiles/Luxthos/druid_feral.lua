@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Druid: Feral (Cooldown Manager)
+_G.LizeUI_ImportStrings.druid_feral_luxthos = "1|RZE7SANBFEVnlpkNpLGRxDvVxj8EGyubdFGwFZVYBhVRE9CAoCKiieAn4A9NrIS4aiVa2vgprUWw0DQSQY0WVgE7c9eAzXl3uG/uvMesqKVCw1S6kjnoN0IGdo2QsXuqPagHI2SpCzoC7YMGdJjGjhEy6afaN0LGT6HmoFahFqCyRsjJc6gNqDWodSxaUPNQBRxOo/wKNQvlGiETIahjXJaMkMUhI+TzRDXopRM6C+1Cf8POGyHHJOwcA994qKc64+VWooloJlroCroXRsinbap3okx8suWO6oOqnWNfE1fEDXFLwzHC6uut7jtcZPMXuusQHaDThugg23i/+EPF4ACDY9wg2MguIhgjNoktgqMkjwgX+hG2H3bEtdJ/Ozrp/8VDGe912DnY+RNo33LGkjY0ajVcqxGvep/iqXQlGU3NjI84HU7PaCqe+AU="

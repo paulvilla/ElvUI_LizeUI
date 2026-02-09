@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Evoker: Preservation (Cooldown Manager)
+_G.LizeUI_ImportStrings.evoker_preservation_luxthos = "1|NdC/T8JQEAfwe71GGTEhxu9NsDngBoPGiMS4OahxEhEwloBogaLM8mMwDs4mDIQ4sLBp4l9Cu7E6sTiwkKh5bV2+n0sud+/y+ubjaKPfXfRed8HXYAtcAZfARUTSiKTATbgz8AjuQEipGLgAToLLQurCETIyv0LG/g68BPgZfAe2wQ2sboJr4FuY6/DG4BvMPzB/B7fADngppPJJIWV7MI+E1Nq3kCpeCalKDssX3c4JGdkMlttC6vxHSOU+9aMx3fvS1YGen+iY6nBhVoVUY08vyeu4FFL1Mx2niA61J2+qA29sdBAdJp7+54NN02Dedv0l/hFGNjMBJzs9Q62AC6HF0FJoObQZOgqMpELTge4gdObrf6dfdRcPh+16zXLiW/Fjx2pZTrt0X63bfw=="

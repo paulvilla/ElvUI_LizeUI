@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Paladin: Retribution (Cooldown Manager)
+_G.LizeUI_ImportStrings.paladin_retribution_luxthos = "1|RY89S4JxFMXv9YkWo7E4d7IP0FhDTUFTN+hleJ4aDRuMMAgtCJLMtgZpc5XKSsUKGgoJDQkks/e5IWntM8R9UlrO4V7O/39/Z69nJzeYc9LZcegt9B56J8RTc0I8sw1tQKvQGrQF/YD7DX2F24b7BW8Tngt9g77DW4A+w9uAtwhtQ1/gebj6FOJyRoi3WkJccqAVNJPQGyEO1oX4YkCI+0aEuH9UKDCZEOJLy67kTc5MikJchBBPp2w8NjkxORXiQtbkx541LVKw0X4uj9nuweQRem23JozhQIjPI7Z+OqRdv6PfNpD+z/u3hvZ9zj8mo+OS04X1scsZNJPdbsE6tHIErabSAe6F1jre6HjL95yTmA2vhiPRWGg4NL8cX48uJeLRtdgv"

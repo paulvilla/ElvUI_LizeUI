@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Druid: Restoration (Cooldown Manager)
+_G.LizeUI_ImportStrings.druid_restoration_luxthos = "1|Rc7PK8NhHAfw5/u0nNy398Nhz/NYubigUSOEIUwcnG1taq2strnvh5Cjk+taDvIHuDhxQCmGEQr7clb+gvGe1S6v99PT59eWJ1/2Zcqe0sE07B5MHsYLE4JRMIDxwVaVcKJ35JxckgvyQF7JC3kiz+Se3JJ38kiuySepEZd8/FHf5usNehx6DHoOehY6DD2DRgV6FHoejW/oCehFJeRyF3QEJ2ElZH8nWSL7pAYbga0r4ayvoveGU7/IFZfsKCEHusmREnLwTAkZTCghh4JKyOFJ2BH0uPg5RSClhBNzYddYcsyVcSXkglMRBdiqv9g+We+2S9j6PyOQavY6MfcQxlsoSacDxsd0YNBK1foPNbPsyU5lNpNxf59/JZHNpTPRXDK98Qs="

@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Paladin: Holy (Cooldown Manager)
+_G.LizeUI_ImportStrings.paladin_holy_luxthos = "1|LcsxTgJRFIXhdwlxBxbnVeMCpHMPNogSNjAJjYRgcqCh4zkgakJiMoJUEBhEIVFC2IU7sLCYgnaGDZiQS2i+v/rb2dbk1AXDHJgHr8ApeAMWwBFYBLfWiN9WHpWu0lEewEj7rDyB7+DcGvn7AZfgDPwHx+AHkg24AD+RXFgjqxAsIQmRlpDU9e0pL9ZIJVRelb4yUN6UoTXyFVsj3ztr5DdAGqOxjsSBY8+B0dk9Gmuk8QwsuCAjJ2Dx2NGx20Nd7dqv+uXbmnfuXd5Vm3s="

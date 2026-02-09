@@ -1,0 +1,5 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Brujo: Destrucción
+-- Pega aquí el export cuando lo tengas.
+_G.LizeUI_ImportStrings.warlock_destruction_luxthos = "1|PZDNSkJBGIZnRjHsCnxnIQZtwzsohTbvslWrKJPCzLT868efjudo2R20PRBB0Z20iKDuop1wTps0Zs7Bzft88w588zDjpONn9vyE91gA3zD9wvQbvxmwATpgBRyCPXAA9uGGCDyEWS2kmoBt8BJsgVcIf8AuWAfPEbyC12AHvNFCrR6Y2EfwCTbBCy1UumiqQy3UyrqZSlqolLlI+eAZWDNlXgv596yFnM/AO/AenOK4C7payOqmFpKeCXvcMtOtCcfEyHQFLeRix8RCC5V8Nw9/mFiAY7CqhRLiSbpWz4qqh6VSPjaU89nS0I81rZZKF3Mj+w9rnt0ULX0BKyNPyRTYi9mPOYg5jOlEdMOIgRcxzFr6ic5uqVlrlE9zG7nto1a72Sm3Txr1fw=="

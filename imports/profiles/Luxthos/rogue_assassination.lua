@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Rogue: Assassination (Cooldown Manager)
+_G.LizeUI_ImportStrings.rogue_assassination_luxthos = "1|RdFLS1thEAbgGS/9BQq+4ya6szbgRi0Iba2uXQji1ggq8bo4VeaUQnuioRyhUBBCrIJpjBpw13rFha69/5C6a3YK8kbBzTPzzRnmm4+zVPftd1NbtJgfgn+Bf4VnUemCL8ADE83dwXOMtaSO1CN8C0/DV7DSwsIofNlEU/fwn/AfCDsQdiIehq+h8h9hD763Imxn6z94xkTHL010ZBqfxxH2m+h6I4vniI9NdG2UnLDcYKK7RbJJSiY6lWS2RbbJjokWOHvqPfmAcACld0x7SR/ivIn+es3DRxOd/Ev2THT1gVyRa3JDbk20eAqfMdFNM9Ey+8vsL+9zRjezA3JIjgi3Lt7xCRc8LpEs+cMPZxzVbKIbvLDATQpvShLBczWZp/ePTCcieKYl+7J9EnEe8fEWPIgWa/QVfOE55p5ipasaq/+omkXzg3MT82OJZKI3CFJBkJ5NfUrPzT4C"

@@ -1,0 +1,4 @@
+_G.LizeUI_ImportStrings = _G.LizeUI_ImportStrings or {}
+
+-- Luxthos - Mage: Frost (Cooldown Manager)
+_G.LizeUI_ImportStrings.mage_frost_luxthos = "1|RdC9SgNREAXgezdBSHXvDVt4BoW1shLEP5CgSWUnCj6BiFwQUVCxScBdV2y2FmwjqdTCWlejJlEs9wVsElBM/IM8gEwUbL7DFHMY5iDtl/uXyqnwuICoRcKZPkLUhJmEm4EqQe1BFaF82DzsLLJV6A+YNPQ3kgGoLsw4zATsDJJBmEVkT6A70F8wY9DvMAvQbehPmCkScmMUdoWELJySkLkX5pV5Y9pMh4Rc2yUhD2tMnYR8fuKNFo8JCRlfMldMzFwzN0yVuWXumHuGW2JuiRvMA/NIQtaGScj6BQnZOGPOSTg5tyIDqK4T9E70Qv5C1ISbGdr/v6MCVQxCR/ZBlf7S/02b72U5tT6/bFe9EW9ua3N75wc="
