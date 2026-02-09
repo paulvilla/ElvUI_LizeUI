@@ -30,6 +30,10 @@ LizeUI_Imports = LizeUI_Imports or {
         -- Export de Edit Mode (ventanas propias de WoW) para 2K (2560x1440)
         data = importStrings.wow_2k or "",
     },
+    wow_1k = {
+        -- Export de Edit Mode (ventanas propias de WoW) para 1K (1920x1080)
+        data = importStrings.wow_1k or "",
+    },
     windtools = {
         -- Formato WindTools: profileString .. "{}" .. privateString
         data = importStrings.windtools or "",

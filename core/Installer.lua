@@ -563,8 +563,12 @@ function LizeUI:ShowInstallWindow(force)
                 f.Option3:SetScript('OnHide', nil)
                 f.Option3:Show()
                 f.Option3:SetText(StripKLabelSuffix(LT('OPT_ELVUI_1K_BUTTON')))
-                f.Option3:SetEnabled(false)
-                f.Option3:SetScript('OnClick', nil)
+                f.Option3:SetEnabled(true)
+                f.Option3:SetScript('OnClick', function()
+                    if LizeUI and LizeUI.ImportElvUI then
+                        LizeUI:ImportElvUI('elvui_1k', 'ElvUI (1K)', true)
+                    end
+                end)
             end
 
             if f.Option4 then
@@ -749,8 +753,12 @@ function LizeUI:ShowInstallWindow(force)
                 f.Option3:SetScript('OnHide', nil)
                 f.Option3:Show()
                 f.Option3:SetText(LT('OPT_WOW_1K_BUTTON'))
-                f.Option3:SetEnabled(false)
-                f.Option3:SetScript('OnClick', nil)
+                f.Option3:SetEnabled(true)
+                f.Option3:SetScript('OnClick', function()
+                    if LizeUI and LizeUI.ImportWoWEditMode then
+                        LizeUI:ImportWoWEditMode('wow_1k', 'WoW (1K)')
+                    end
+                end)
             end
 
             if f.Option4 then
