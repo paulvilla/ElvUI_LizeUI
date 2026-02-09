@@ -1,3 +1,5 @@
+local addonName = ...
+
 local LSM = LibStub("LibSharedMedia-3.0")
 local koKR, ruRU, zhCN, zhTW, western = LSM.LOCALE_BIT_koKR, LSM.LOCALE_BIT_ruRU, LSM.LOCALE_BIT_zhCN, LSM.LOCALE_BIT_zhTW, LSM.LOCALE_BIT_western
 
@@ -208,3 +210,28 @@ LSM:Register("statusbar","None", [[Interface\AddOns\LizeUI\media\textures\status
 LSM:Register("statusbar","pHishTex29", [[Interface\AddOns\LizeUI\media\textures\statusbar\pHishTex29.tga]])
 LSM:Register("statusbar","pHishTex35", [[Interface\AddOns\LizeUI\media\textures\statusbar\pHishTex35.tga]])
 LSM:Register("statusbar","pHishTex5", [[Interface\AddOns\LizeUI\media\textures\statusbar\pHishTex5.tga]])
+
+do
+	if type(addonName) ~= 'string' or addonName == '' then
+		return
+	end
+
+	local oldPrefix = 'Interface\\AddOns\\LizeUI\\'
+	local newPrefix = 'Interface\\AddOns\\' .. addonName .. '\\'
+
+	local mediaTable = rawget(LSM, 'MediaTable') or LSM.MediaTable
+	if type(mediaTable) ~= 'table' then
+		return
+	end
+
+	for _, mediaType in ipairs({ 'font', 'sound', 'statusbar' }) do
+		local t = mediaTable[mediaType]
+		if type(t) == 'table' then
+			for k, v in pairs(t) do
+				if type(v) == 'string' and v:sub(1, #oldPrefix) == oldPrefix then
+					t[k] = newPrefix .. v:sub(#oldPrefix + 1)
+				end
+			end
+		end
+	end
+end

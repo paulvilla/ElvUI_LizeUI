@@ -8,9 +8,10 @@ LizeUI_Imports = LizeUI_Imports or {
         -- Export de ElvUI (Distributor). Ej: "!E1!..."
         data = importStrings.elvui or "",
     },
-    elvui_4k = {
+
+    elvui_3k = {
         -- Export de ElvUI (Distributor) para 3K (3440x1440)
-        data = importStrings.elvui_4k or "",
+        data = importStrings.elvui_3k or "",
     },
     elvui_2k = {
         -- Export de ElvUI (Distributor) para 2K (2560x1440)
@@ -19,6 +20,15 @@ LizeUI_Imports = LizeUI_Imports or {
     elvui_1k = {
         -- Export de ElvUI (Distributor) para 1K (1920x1080)
         data = importStrings.elvui_1k or "",
+    },
+
+    wow_3k = {
+        -- Export de Edit Mode (ventanas propias de WoW) para 3K (3440x1440)
+        data = importStrings.wow_3k or "",
+    },
+    wow_2k = {
+        -- Export de Edit Mode (ventanas propias de WoW) para 2K (2560x1440)
+        data = importStrings.wow_2k or "",
     },
     windtools = {
         -- Formato WindTools: profileString .. "{}" .. privateString
