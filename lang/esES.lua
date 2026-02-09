@@ -4,9 +4,24 @@ _G.LizeUI_Locales = _G.LizeUI_Locales or {}
 local L = {}
 
 -- Options UI
+L.OPT_LAUNCH_INSTALLER = 'Lanzar instalador'
 L.OPT_INFO_TITLE = 'Información'
 L.OPT_INFO_DESC = 'Desde aquí puedes activar o desactivar funciones de LizeUI e importar perfiles para ElvUI y addons complementarios.\n\nNota: algunas opciones pueden requerir /reload para aplicarse por completo.'
 L.OPT_SPACER = ' '
+
+L.OPT_DEPS_TITLE = 'Dependencias Addon Imprescindibles/Recomendados'
+L.OPT_DEPS_DESC = 'Estos addons son imprescindibles para que la interfaz se vea igual. Si ves el icono en rojo, revisa en la pantalla de selección de personaje → AddOns que estén instalados y activados.'
+
+L.OPT_DEPS_LEGEND_ACTIVE = 'Activo'
+L.OPT_DEPS_LEGEND_INACTIVE = 'Sin activar'
+L.OPT_DEPS_LEGEND_MISSING = 'Falta'
+
+L.OPT_DEPS_STATUS_TITLE = 'Estado de los addons imprescindibles'
+L.OPT_DEPS_MANDATORY_STATUS_TITLE = 'Estado de addons obligatorios'
+L.OPT_DEPS_RECOMMENDED_STATUS_TITLE = 'Estado de addons recomendados'
+
+L.OPT_QOL_HEADER = 'Funciones de mejora de vida'
+L.OPT_IMPORTS_MAIN_HEADER = 'Importaciones para instalar LizeUI'
 
 L.OPT_SUPPRESS_RIGHTCLICK_NAME = 'Suprimir click derecho (doble click)'
 L.OPT_SUPPRESS_RIGHTCLICK_DESC = 'Evita que un click derecho “suelto” corte el mouselook en combate (requiere recarga para efecto completo).'
@@ -56,6 +71,42 @@ L.OPT_OTHER_IMPORTS_DESC = 'LizeUI también integra recursos adicionales (textur
 L.OPT_TEXTURES = 'Texturas'
 L.OPT_FONTS = 'Fuentes'
 
+-- Installer / Welcome window
+L.INSTALL_TITLE = 'Instalación LizeUI'
+L.INSTALL_SUBTITLE = 'Bienvenido a LizeUI'
+L.INSTALL_DESC1 = 'LizeUI es una interfaz para |cff00c0faElvUI|r pensada para que todo se vea claro, limpio y bien alineado desde el primer momento. Incluye varias configuraciones según tu resolución (|cff00ff002K/3K|r) para mantener el escalado, las proporciones y la colocación de cada elemento como está diseñada.\n\nAdemás, añade funcionalidades de mejora de vida (QoL) e incorpora un paquete amplio de texturas y fuentes para enriquecer el aspecto visual del juego. Para que la configuración quede completa, LizeUI incluye autoimportadores e integraciones para los addons necesarios, siempre que los tengas instalados y activados.\n\nPuedes volver a abrir este instalador cuando quieras con |cff00ff00/lizeui install|r.'
+
+-- (Compat) estas líneas ya no se usan en la página 1 del instalador
+L.INSTALL_DESC2 = ' '
+L.INSTALL_DESC3 = ' '
+L.INSTALL_DESC4 = ' '
+
+L.INSTALL_DEPS_SUBTITLE = 'Dependencias (obligatorias e imprescindibles)'
+L.INSTALL_DEPS_DESC1 = 'Lista de addons necesarios para que LizeUI se vea como está diseñada. Izquierda: estado. Derecha: importar (si aplica) y copiar el link.'
+L.INSTALL_DEPS_IMPORT = 'Importar'
+L.INSTALL_DEPS_DOWNLOAD = 'Descargar'
+L.INSTALL_DEPS_TAG_MANDATORY = 'Obligatorio'
+L.INSTALL_DEPS_TAG_IMPORTANT = 'Imprescindible'
+L.INSTALL_DEPS_COPY_TEXT_FMT = 'Link de descarga: %s'
+
+L.INSTALL_RECS_SUBTITLE = 'Addons recomendados'
+L.INSTALL_RECS_DESC1 = 'Opcionales, pero recomendados para completar la experiencia de LizeUI. Izquierda: estado. Derecha: copiar el link.'
+L.INSTALL_RECS_TAG = 'Recomendado'
+
+L.INSTALL_CHAT_SUBTITLE = 'Chat'
+L.INSTALL_CHAT_DESC1 = 'Este paso configura las ventanas de chat (nombres, posiciones y colores) para que todo quede alineado con LizeUI.'
+L.INSTALL_CHAT_DESC2 = 'Después puedes mover/renombrar pestañas igual que el chat de Blizzard. Pulsa el botón para aplicarlo.'
+L.INSTALL_CHAT_BUTTON = 'Configurar chat'
+L.INSTALL_CHAT_DONE = 'Chat configurado'
+
+L.INSTALL_SCALE_SUBTITLE = 'Escala de UI'
+L.INSTALL_SCALE_DESC1 = 'LizeUI está diseñado para usarse con escala |cff00c0fa0.66|r. Si usas otra escala, algunos elementos pueden verse desplazados o desalineados. Ajusta la barra para cambiarlo manualmente.'
+L.INSTALL_SCALE_BUTTON = 'Configuración LizeUI'
+
+L.INSTALL_FINISH_SUBTITLE = 'Finalizar instalación'
+L.INSTALL_FINISH_DESC1 = 'Ya está todo listo. Pulsa Finalizar para recargar la interfaz y aplicar los cambios correctamente.'
+L.INSTALL_FINISH_BUTTON = 'Finalizar'
+
 -- Config header / plugin line
 L.CFG_LINE_FMT = '|cff00c0faLizeUI|r |cffaaaaaaby|r |cff00ff00%s|r - |cffaaaaaaVersión:|r |cff00ff00%s|r'
 
@@ -85,6 +136,14 @@ L.POPUP_RELOAD_UI_TEXT_BCDM = 'Perfil importado en BetterCooldownManager. Para q
 L.POPUP_RELOAD_UI_RELOAD = 'Reiniciar'
 L.POPUP_RELOAD_UI_CANCEL = 'Cancelar'
 
+-- Aviso de addons importantes faltantes
+L.POPUP_IMPORTANT_ADDONS_TEXT_FMT = 'Para que la interfaz se vea igual, estos addons deben estar instalados y activos:\n\n%s\n\nPuedes activarlos en la pantalla de selección de personaje → AddOns.\n\nPulsa Aceptar para no volver a mostrar este aviso.'
+L.POPUP_IMPORTANT_ADDONS_OK = 'Aceptar'
+L.POPUP_IMPORTANT_ADDONS_LATER = 'Más tarde'
+L.POPUP_IMPORTANT_ADDONS_MISSING = 'falta'
+L.POPUP_IMPORTANT_ADDONS_DISABLED = 'desactivado'
+
+
 L.MSG_WOW_COPY_PASTE_HELP = 'LizeUI: Copia el string de la ventana y pégalo en Edit Mode → Layouts → Import.'
 L.MSG_WOW_VISUAL_HINT = 'LizeUI: Si no se aplica visualmente, prueba /reload y selecciona el layout en Edit Mode.'
 
@@ -94,6 +153,7 @@ L.MSG_DEBUG_C_EDITMODE_MISSING = 'LizeUI: Debug: C_EditMode no existe.'
 L.MSG_DEBUG_C_EDITMODE_FUNCTIONS_FMT = 'LizeUI: Debug: Funciones en C_EditMode: %s'
 L.MSG_WOW_LAYOUT_IMPORTED_API_FMT = 'LizeUI: Layout importado en %s (API=%s).'
 L.MSG_WOW_LAYOUT_IMPORTED_API_ID_FMT = 'LizeUI: Layout importado en %s (API=%s, layoutID=%s).'
+L.MSG_WOW_LAYOUT_SAVED_NAME_FMT = 'LizeUI: Nombre del layout guardado: %s'
 
 L.REASON_EDITMODE_API_UNAVAILABLE = 'API de Edit Mode no disponible'
 L.REASON_NO_NEW_LAYOUT_DETECTED = 'No se detectó un layout nuevo tras importar'

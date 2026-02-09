@@ -4,7 +4,7 @@
 ## Author: Lizerius
 ## Version: 0.9.4
 ## Title: |cff1784d1ElvUI|r |cff00c0faL|r|cff1aabfbi|r|cff3495fcz|r|cff4e80fde|r|cff686afeU|r|cff8255ffI|r
-## Notes: Componentes para LizeUI (Compatible con Midnight)
+## Notes: Importa perfiles LizeUI (2K/3K) + integraciones (Plater/Details/BCDM/WindTools) y utilidades QoL.
 ## AddonCompartmentFunc: LizeUI_OnAddonCompartmentClick
 ## IconTexture: Interface\AddOns\ElvUI_LizeUI\media\textures\icons\lizeui.tga
 ## RequiredDeps: ElvUI
@@ -37,6 +37,7 @@ core\ElvUIIntegration.lua
 core\Options.lua
 core\Commands.lua
 core\AddonCompartment.lua
+core\Installer.lua
 core\Core.lua
 functions\SuppressRightClick.lua
 functions\GlobalFadePersist.lua

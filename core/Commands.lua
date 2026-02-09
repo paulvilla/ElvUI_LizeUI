@@ -3,6 +3,8 @@
 local _, ns = ...
 
 local LizeUI = ns.LizeUI
+local E = ns.E
+local addonName = ns.addonName or 'ElvUI_LizeUI'
 local LT = ns.LT
 local SplitWords = ns.SplitWords
 local PrintMsg = ns.PrintMsg
@@ -11,7 +13,14 @@ function LizeUI:HandleSlashCommand(msg)
     local parts = SplitWords(msg)
     local cmd = (parts[1] and string.lower(parts[1])) or ''
 
-    if cmd == '' or cmd == 'help' then
+    if cmd == '' then
+        if E and type(E.ToggleOptions) == 'function' then
+            E:ToggleOptions(addonName)
+        end
+        return
+    end
+
+    if cmd == 'help' then
         PrintMsg(LT('CMD_HELP_TITLE'))
         PrintMsg(LT('CMD_HELP_LINE1'))
         PrintMsg(LT('CMD_HELP_LINE2'))
@@ -42,6 +51,13 @@ function LizeUI:HandleSlashCommand(msg)
     then
         self:SetLanguageMode(nil)
         PrintMsg(LT('CMD_LANG_RESET'))
+        return
+    end
+
+    if cmd == 'install' or cmd == 'test_welcome' then
+        if self.ShowInstallWindow then
+            self:ShowInstallWindow(true)
+        end
         return
     end
 
