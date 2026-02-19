@@ -2,7 +2,7 @@
 ## Interface-Classic: 11505
 ## Interface-BCC: 20504
 ## Author: Lizerius
-## Version: 1.3.5
+## Version: 1.3.6
 ## Title: |cff1784d1ElvUI|r |cff00c0faL|r|cff1aabfbi|r|cff3495fcz|r|cff4e80fde|r|cff686afeU|r|cff8255ffI|r
 ## Notes: Importa perfiles LizeUI (2K/3K) + integraciones (Plater/Details/BCDM/WindTools) y utilidades QoL.
 ## AddonCompartmentFunc: LizeUI_OnAddonCompartmentClick
